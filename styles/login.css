@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color:#015286 !important;
+}
+
+
+.loginForm  {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+}
+
+.loginFormBox {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 24px;
+    background-color: white;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.loginButton {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    margin: auto;
+    padding-top: 24px;
+}
+
+.loginButton button {
+    pointer-events: none;
+    height: 48px;
+    width: 202px;
+    background-color: #1acae3;
+    border: none;
+    border-radius: 24px;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.5;
+    font-size: 0.875rem;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    pointer-events: ;
+}
+
+.email, .pass {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.checkboxRemember {
+    padding: 8px;
+}
+
+#emailLogin, #passLogin {
+    width: 100%;
+    border: none;
+    border-bottom: solid #d9d9d9;
+    border-width: 1px;
+    transition: width 1s;
+}
+
+#emailLogin:hover, #passLogin:hover {
+    border-width: 2px;
+}
+
+
+.emailOrPasswordIncorrectMessage {
+    position: fixed !important;
+    display: flex;
+    width: max-content;
+    margin-top: 24px;
+    left: 50%;
+    right: auto;
+    bottom: 24px;
+    transform: translateX(-50%)
+}
+
+.emailOrPasswordIncorrectMessage p {
+    margin: 0px;
+}
+
+.emailOrPasswordIncorrectMessage .close {
+    margin-left: 16px;
+}
