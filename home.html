@@ -15,16 +15,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 
     <!-- Hover CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="styles/hover-min.css">
 
     <!--Styles-->
     <link rel="stylesheet" href="styles/menu.css">
     <link rel="stylesheet" href="styles/general.css">
     <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    
 
     <!--Google fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap" rel="stylesheet"> 
 
     <title>Imperium Romanum</title>
   </head>
@@ -73,66 +76,76 @@
     </main>
 
     <footer>
-      <div class="mail-subscription">
         <div class="email-subscription">
           <div>
             <h3>Inspire your inbox</h3>
           </div>
           <div class="email-form">
-            <input type="email" name="emailLogin" id="emailLogin" placeholder="Enter your email">
+            <input type="email" name="emailLogin" id="emailLogin" placeholder=" Enter your email">
             <button type="submit" id="button-subscribe">
               Subscribe
             </button>
-            <div>
-              <p>
-                By signing up for this email, you are agreeing to news, information and ideas from noone.
-              </p>
-            </div>
           </div>
+          <p>
+            By signing up for this email, you are agreeing to news, (dis)information and ideas from noone.
+          </p>
         </div>
         <div class="footer-center">
           <ul>
             <li><h3>Our Sites</h3></li>
-            <li><a href="#">Helenika Godd(e)ss</a></li>
-            <li><a href="#">Sapan Inkas</a></li>
-            <li><a href="#"></a>Nobel Laureates</li>
-            <li><a href="#"></a>Cities of Mesopotamia</li>
-            <li><a href="#"></a>Allegedly breakthrough years</li>
-            <li><a href="#"></a>CryptoCoinsWiki</li>
-            <li><a href="#"></a>Particles Physics showcase</li>
+            <li><a href="#" class="hvr-forward">Helenika Godd(e)ss</a></li>
+            <li><a href="#" class="hvr-forward">Sapan Inkas</a></li>
+            <li><a href="#" class="hvr-forward">Nobel Laureates</a></li>
+            <li><a href="#" class="hvr-forward">Cities of Mesopotamia</a></li>
+            <li><a href="#" class="hvr-forward">Allegedly breakthrough years</a></li>
+            <li><a href="#" class="hvr-forward">CryptoCoinsWiki</a></li>
+            <li><a href="#" class="hvr-forward">Particles Physics showcase</a></li>
           </ul>
           <ul>
             <li><h3>Mobile</h3></li>
-            <li><a href="#">Android App</a></li>
-            <li><a href="#">iOS App</a></li>
+            <li><a href="#" class="hvr-forward">Android App</a></li>
+            <li><a href="#" class="hvr-forward">iOS App</a></li>
           </ul>
           <ul>
             <li><h3>International</h3></li>
-            <li><a href="#">Uruguay</a></li>
-            <li>Eswatini</li>
-            <li>Kosovo</li>
-            <li>Timor-Leste</li>
-            <li>Papua Niugini</li>
+            <li><a href="#" class="hvr-forward">Uruguay</a></li>
+            <li><a href="#" class="hvr-forward">Eswatini</a></li>
+            <li><a href="#" class="hvr-forward">Kosovo</a></li>
+            <li><a href="#" class="hvr-forward">Timor-Leste</a></li>
+            <li><a href="#" class="hvr-forward">Papua Niugini</a></li>
           </ul>
           <ul class="stay-disconnected">
             <li><h3>Stay (dis)connected</h3></li>
-            <li>Newsletter</li>
+            <li><a href="#" class="hvr-forward">Newsletter</a></li>
             <div class="social-media">
-              <li><i class="fab fa-facebook fa-2x hvr-grow" id='icon-facebook'></i></li>
-              <li><i class="fab fa-twitter fa-2x" ></i></li>
-              <li><i class="fab fa-youtube fa-2x"></i></li>
-              <li><i class="fab fa-instagram fa-2x"></i></li>
-              <li><i class="fab fa-pinterest fa-2x"></i></li>
+              <li><i class="fab fa-facebook fa-2x hvr-buzz-out" id='icon-facebook'></i></li>
+              <li><i class="fab fa-twitter fa-2x hvr-buzz-out" ></i></li>
+              <li><i class="fab fa-youtube fa-2x hvr-buzz-out"></i></li>
+              <li><i class="fab fa-instagram fa-2x hvr-buzz-out"></i></li>
+              <li><i class="fab fa-pinterest fa-2x hvr-buzz-out"></i></li>
             </div>
             <div class="watch-out">
-              <i class="fas fa-eye fa-5x"></i>
+              <i class="fas fa-eye fa-5x hvr-pulse" onclick=onOverlay()></i>
             </div>
           </ul>
           <ul></ul>
         </div>
-        <div class="footer-bottom"></div>
-      </div>
+          <ul class="footer-bottom">
+            <li><a href="#" class="hvr-grow">About me</a></li>
+            <li><a href="#" class="hvr-grow">Contact me</a></li>
+            <li><a href="#" class="hvr-grow">Privacy notice</a></li>
+            <li><a href="#" class="hvr-grow">Terms of Use</a></li>
+          </ul>
+          <p id="company"></p>
     </footer>
+
+    <!-- Overlay -->
+    <div id="watch-out-overlay" onclick=offOverlay()>
+      <div class="text">   
+        <p>We are living in Aldous Huxley's dystopia.</p>
+        <p>Read: Brave New World</p>
+      </div>
+    </div>
 
     <!-- templates -->
 
@@ -142,7 +155,7 @@
           <img src="" alt="" class="card-image">
           <h3 class="emperor-name"></h3>
           <p class="emperor-description"></p>
-          <a href="#">
+          <a href="#" class="hvr-grow">
             Learn More
             <i class="fas fa-chevron-right"></i>
           </a>
