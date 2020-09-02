@@ -15,14 +15,155 @@
     <link rel="stylesheet" href="styles/menu.css">
     <link rel="stylesheet" href="styles/general.css">
     <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/figure.css">
+
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="styles/hover-min.css">
 
     <!--Google fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap" rel="stylesheet"> 
 
     <title>Imperium Romanum</title>
   </head>
-  <body> 
+  <body>
+
+
+    <header class="header">
+      <!-- Nav -->
+      <nav class="main-nav">
+        <img src="images/logo.png" alt="SPQR" class="logo">
+        <ul class="main-menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Princeps</a></li>
+          <li><a href="#">Dominus</a></li>
+          <li><a href="#">Publicar</a></li>
+        </ul>
+        <ul class="right-menu">
+          <li>
+            <a href="#">
+              <i class="fas fa-search"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-user-alt"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+
+    <main class="figure-emperors">
+      <!--Left column -->
+      <div class="left-column-emperor">
+        <div class="emperor-title">
+          <h1>Augustus</h1>
+          <p>-27 - 14</p>
+        </div>
+        <div class="main-image">
+          <img src="images/emperors/augustus-statue.jpg" alt="Augustus">
+        </div>
+      </div>
+      <!-- Right column -->
+      <div class="right-column-emperor">
+        <div class="key-data">
+          <ul>
+            <li>Born in: Rome</li>
+            <li>Age when Emperor: 36</li>
+            <li>Years being Emperor: 41</li>
+          </ul>
+        </div>
+        <div class="description">
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum repellat molestias, numquam quos suscipit, quo tempore, omnis blanditiis dolores expedita ullam aperiam fugiat. Dolores, eos ad eaque quia nisi sunt?</p>
+        </div>
+        <div class="more-images">
+          <img src="images/emperors/augustus-bust.jpg" alt="Augustus">
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="email-subscription">
+        <div>
+          <h3>Inspire your inbox</h3>
+        </div>
+        <div class="email-form">
+          <input type="email" name="emailLogin" id="emailLogin" placeholder=" Enter your email">
+          <button type="submit" id="button-subscribe">
+            Subscribe
+          </button>
+        </div>
+        <p>
+          By signing up for this email, you are agreeing to news, (dis)information and ideas from noone.
+        </p>
+      </div>
+      <div class="footer-center">
+        <ul>
+          <li><h3>Our Sites</h3></li>
+          <li><a href="#" class="hvr-forward">Helenika Godd(e)ss</a></li>
+          <li><a href="#" class="hvr-forward">Sapan Inkas</a></li>
+          <li><a href="#" class="hvr-forward">Nobel Laureates</a></li>
+          <li><a href="#" class="hvr-forward">Cities of Mesopotamia</a></li>
+          <li><a href="#" class="hvr-forward">Allegedly breakthrough years</a></li>
+          <li><a href="#" class="hvr-forward">CryptoCoinsWiki</a></li>
+          <li><a href="#" class="hvr-forward">Particles Physics showcase</a></li>
+        </ul>
+        <ul>
+          <li><h3>Mobile</h3></li>
+          <li><a href="#" class="hvr-forward">Android App</a></li>
+          <li><a href="#" class="hvr-forward">iOS App</a></li>
+        </ul>
+        <ul>
+          <li><h3>International</h3></li>
+          <li><a href="#" class="hvr-forward">Uruguay</a></li>
+          <li><a href="#" class="hvr-forward">Eswatini</a></li>
+          <li><a href="#" class="hvr-forward">Kosovo</a></li>
+          <li><a href="#" class="hvr-forward">Timor-Leste</a></li>
+          <li><a href="#" class="hvr-forward">Papua Niugini</a></li>
+        </ul>
+        <ul class="stay-disconnected">
+          <li><h3>Stay (dis)connected</h3></li>
+          <li><a href="#" class="hvr-forward">Newsletter</a></li>
+          <div class="social-media">
+            <li><i class="fab fa-facebook fa-2x hvr-buzz-out" id='icon-facebook'></i></li>
+            <li><i class="fab fa-twitter fa-2x hvr-buzz-out" ></i></li>
+            <li><i class="fab fa-youtube fa-2x hvr-buzz-out"></i></li>
+            <li><i class="fab fa-instagram fa-2x hvr-buzz-out"></i></li>
+            <li><i class="fab fa-pinterest fa-2x hvr-buzz-out"></i></li>
+          </div>
+          <div class="watch-out">
+            <i class="fas fa-eye fa-5x hvr-pulse" onclick=onOverlay()></i>
+          </div>
+        </ul>
+        <ul></ul>
+      </div>
+        <ul class="footer-bottom">
+          <li><a href="#" class="hvr-grow">About me</a></li>
+          <li><a href="#" class="hvr-grow">Contact me</a></li>
+          <li><a href="#" class="hvr-grow">Privacy notice</a></li>
+          <li><a href="#" class="hvr-grow">Terms of Use</a></li>
+        </ul>
+        <p id="company"></p>
+  </footer>
+
+
+  <!-- templates -->
+  <template>
+
+  </template>
+
+  <!-- Overlay -->
+  <div id="watch-out-overlay" onclick=offOverlay()>
+    <div class="text">   
+      <p>We are living in Aldous Huxley's dystopia.</p>
+      <p>Read: Brave New World</p>
+    </div>
+  </div>
 
 
     <!-- Scripts -->
