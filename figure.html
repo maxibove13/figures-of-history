@@ -58,33 +58,8 @@
 
 
 
-    <main class="figure-emperors">
-      <!--Left column -->
-      <div class="left-column-emperor">
-        <div class="emperor-title">
-          <h1>Augustus</h1>
-          <p>-27 - 14</p>
-        </div>
-        <div class="main-image">
-          <img src="images/emperors/augustus-statue.jpg" alt="Augustus">
-        </div>
-      </div>
-      <!-- Right column -->
-      <div class="right-column-emperor">
-        <div class="key-data">
-          <ul>
-            <li>Born in: Rome</li>
-            <li>Age when Emperor: 36</li>
-            <li>Years being Emperor: 41</li>
-          </ul>
-        </div>
-        <div class="description">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum repellat molestias, numquam quos suscipit, quo tempore, omnis blanditiis dolores expedita ullam aperiam fugiat. Dolores, eos ad eaque quia nisi sunt?</p>
-        </div>
-        <div class="more-images">
-          <img src="images/emperors/augustus-bust.jpg" alt="Augustus">
-        </div>
-      </div>
+    <main class="figure-emperors" id="emperor-page">
+      <!-- emperor page goes here -->
     </main>
 
     <footer>
@@ -153,9 +128,60 @@
 
 
   <!-- templates -->
-  <template>
+    <template id="emperor-page-template">
+      <div class="page-container-timeline">
+        <!-- timeline -->
+      <div id="timeline" class="time-line">
+        <div class="ticks">
+          <p>-27</p>
+          <p>476</p>
+        </div>
+        <div class="timeline-line">
+          <div class="beg-container">
+            <i class="fas fa-chevron-right beg" id="circle-beg"></i>
+            
+          </div>
+          
+          <div class="end-container">
+            <i class="fas fa-chevron-left end" id="circle-end"></i>
+          </div>
+          <p class="emperor-length"></p>
+        </div>
+      </div>
+        <div class="emperor-page-container">
+              <!--Left column -->
+          <div class="left-column-emperor">
+            <div class="emperor-title">
+              <h1 class="emperor-title-name"></h1>
+              <p class="emperor-range"></p>
+            </div>
+            <div class="main-image">
+              <img src="" alt="" class="main-img" > 
+            </div>
+          </div>
+          <!-- Right column -->
+          <div class="right-column-emperor">
+            <div class="key-data">
+              <!-- key data -->
+              <ul>
+                <li class="bornIn"></li>
+                <li class="ageWhenEmperor"></li>
+                <li class="yearsEmperor"></li>
+              </ul>
+            </div>
+            <!-- description -->
+            <div class="description">
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum repellat molestias, numquam quos suscipit, quo tempore, omnis blanditiis dolores expedita ullam aperiam fugiat. Dolores, eos ad eaque quia nisi sunt?</p>
+            </div>
+            <!-- carousel images -->
+            <div class="more-images">
+              <img src="" alt="" class="emperor-page-images">
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
 
-  </template>
 
   <!-- Overlay -->
   <div id="watch-out-overlay" onclick=offOverlay()>
@@ -167,7 +193,7 @@
 
 
     <!-- Scripts -->
-    <script src="scripts/arrays.js"></script>
+    <script src="scripts/figures.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,13 +1,16 @@
-.figure-emperors {
-    display: flex;
+.page-container-timeline {
     border: solid black;
 }
 
-.figure-emperors div {
+.emperor-page-container {
+    display: flex;
+}
+
+.emperor-page-container div {
     padding: 10px;
 }
 
-.figure-emperors img {
+.emperor-page-container img {
     width: 100%;
 }
 
@@ -43,6 +46,24 @@
     padding: 10px;
 }
 
-.right-column-emperor .more-img {
 
+.time-line {
+    margin: 40px 20px 20px 20px;
+}
+
+.ticks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.timeline-line {
+    border-top: solid blue;
+    position: relative;
+}
+
+
+.timeline-line div {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
 }
