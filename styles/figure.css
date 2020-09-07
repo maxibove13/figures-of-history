@@ -54,11 +54,16 @@
 .ticks {
     display: flex;
     justify-content: space-between;
+    font-family: 'Crimson Text', serif;
 }
 
 .timeline-line {
-    border-top: solid blue;
+    border-top: solid #F59E3B;
     position: relative;
+}
+
+.beg-container, .end-container{
+    top: -45%
 }
 
 
@@ -67,3 +72,10 @@
     display: flex;
     flex-direction: column;
 }
+
+.emperor-length {
+    padding-top: 5px;
+    text-align: center;
+
+}
+

@@ -116,7 +116,7 @@ for (let indexEmperorPage = 0; indexEmperorPage < emperors.length; indexEmperorP
     itemClone.querySelector('.description').innerText = emperors[indexEmperorPage].emperorDescription;
     itemClone.querySelector('.emperor-page-images').src = emperors[indexEmperorPage].emperorImages[2];
     itemClone.querySelector('.emperor-page-images').alt = emperors[indexEmperorPage].emperorImages[2];
-    itemClone.querySelector('.emperor-length').innerText = (Math.abs(emperors[indexEmperorPage].emperorUntil) - emperors[indexEmperorPage].emperorFrom) + ' years being Emperor'
+    itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(emperors[indexEmperorPage].emperorUntil) - emperors[indexEmperorPage].emperorFrom) + ' years'
 
     // Define the dots position
     beg = emperors[indexEmperorPage].emperorFrom;

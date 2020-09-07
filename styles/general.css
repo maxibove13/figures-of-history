@@ -6,8 +6,8 @@
 }
 
 body {
-    font-family: 'Playfair Display', serif;
-    background: white;
+    font-family: 'Ubuntu', sans-serif;
+    background: #8F8E88;
     color: black;
     font-size: 15px;
     line-height: 1.5;
@@ -16,6 +16,7 @@ body {
 a {
     color: white;
     text-decoration: none;
+
 }
 
 a:hover {
@@ -27,10 +28,13 @@ ul {
     list-style: none;
 }
 
+
+
 main {
     max-width: 1100px;
     margin: auto;
     padding: 0 8px;
+    margin-top: 10px;
 }
 
 h3 {

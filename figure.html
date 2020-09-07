@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="styles/home.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/figure.css">
+    <link rel="stylesheet" href="styles/search-bar.css">
+    <link rel="stylesheet" href="styles/header.css">
 
     <!-- Hover CSS -->
     <link rel="stylesheet" href="styles/hover-min.css">
@@ -25,6 +27,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> 
 
     <title>Imperium Romanum</title>
   </head>
@@ -34,26 +39,24 @@
     <header class="header">
       <!-- Nav -->
       <nav class="main-nav">
-        <img src="images/logo.png" alt="SPQR" class="logo">
-        <ul class="main-menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Princeps</a></li>
-          <li><a href="#">Dominus</a></li>
-          <li><a href="#">Publicar</a></li>
-        </ul>
-        <ul class="right-menu">
-          <li>
-            <a href="#">
-              <i class="fas fa-search"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fas fa-user-alt"></i>
-            </a>
-          </li>
-        </ul>
+        <div class="logo-menu">
+          <ul class="main-menu">
+            <li> <img src="images/logo.png" alt="SPQR" class="logo"></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Princeps</a></li>
+            <li><a href="#">Dominus</a></li>
+            <li><a href="#">Publicar</a></li>  
+          </ul>
+        </div>
+        <a href="#">Login</a>
       </nav>
+
+      <form id="content">
+        <input type="text" name="input" class="input-search" id="search-input">
+        <button type="reset" class="search" id="search-btn"></button>
+      </form>
+
+
     </header>
 
 
@@ -138,12 +141,12 @@
         </div>
         <div class="timeline-line">
           <div class="beg-container">
-            <i class="fas fa-chevron-right beg" id="circle-beg"></i>
+            <i class="fas fa-chevron-right fa-2x beg" id="circle-beg"></i>
             
           </div>
           
           <div class="end-container">
-            <i class="fas fa-chevron-left end" id="circle-end"></i>
+            <i class="fas fa-chevron-left fa-2x end" id="circle-end"></i>
           </div>
           <p class="emperor-length"></p>
         </div>
@@ -194,6 +197,7 @@
 
     <!-- Scripts -->
     <script src="scripts/figures.js"></script>
+    <script src="scripts/search.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
