@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!--Styles-->
-    <link rel="stylesheet" href="styles/menu.css">
     <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/home.css">
     <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/figure.css">
+    <link rel="stylesheet" href="styles/figures.css">
     <link rel="stylesheet" href="styles/search-bar.css">
     <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/filters.css">
+
 
     <!-- Hover CSS -->
     <link rel="stylesheet" href="styles/hover-min.css">
@@ -33,7 +33,7 @@
 
     <title>Imperium Romanum</title>
   </head>
-  <body>
+  <body onload="showAllImperators()">
 
 
     <header class="header">
@@ -45,10 +45,11 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">Princeps</a></li>
             <li><a href="#">Dominus</a></li>
-            <li><a href="#">Publicar</a></li>  
+            <li><a href="#">Publicar</a></li>
+            <li><a href="#">Login</a></li>
           </ul>
         </div>
-        <a href="#">Login</a>
+        
       </nav>
 
       <form id="content">
@@ -59,11 +60,45 @@
 
     </header>
 
+    <main>
 
+    <section class="filters">
+      <div class="filters-title">
+        <h2>Filters</h2>
+        <i class="fas fa-sliders-h"></i>
+      </div>
+      <div class="filters-forms">
+        <div class="howlong">
+          <h4>How long did he last?</h4>
+          <input type="text" id="fromReigningYears" placeholder="From" onkeyup="fromToFilter('fromReigningYears','toReigningYears')">
+          <input type="text" id="toReigningYears"placeholder="To" onkeyup="fromToFilter('fromReigningYears','toReigningYears')">
+          <p>years</p>
+        </div>
+      </div>
+      <button onclick="removeFilters()">
+        Borrar filtros
+      </button>
+    </section>
 
-    <main class="figure-emperors" id="emperor-page">
+    <section class="figures" id="emperor-page">
       <!-- emperor page goes here -->
-    </main>
+    </section>
+
+
+
+
+
+    <section class="categories">
+      <h2>Dinasties / Intermissions</h2>
+      <ul class="dinasties">
+        <li><a href="#" class="hvr-forward">Julio-Claudia</a></li>
+        <li><a href="#" class="hvr-forward">Year of 4 Emperors</a></li>
+        <li><a href="#" class="hvr-forward">Flavia</a></li>
+        <li><a href="#" class="hvr-forward">Antonina</a></li>
+      </ul>
+    </section>
+
+  </main>
 
     <footer>
       <div class="email-subscription">
@@ -196,8 +231,10 @@
 
 
     <!-- Scripts -->
+    <script src="scripts/imperators-array.js"></script>
     <script src="scripts/figures.js"></script>
     <script src="scripts/search.js"></script>
+    <script src="scripts/filters.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

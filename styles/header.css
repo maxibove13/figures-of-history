@@ -13,7 +13,7 @@
 /* Nav */
 .main-nav {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     margin: auto;
     height: inherit;
     font-size: 25px;
@@ -37,14 +37,20 @@
     width: 60px;
 }
 
-header li {
-}
-
 header a {
     display: block;
     font-weight: normal;
-    padding: .35rem 2rem 0.74rem 1rem;
+    padding: .35rem 1rem 0.74rem 1rem;
+    transition-property: all;
+    transition-duration: 0.165s;
+    transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
 }
+
+header a:hover {
+    background: #682946;
+}
+
+
 
 
 header li a:hover {

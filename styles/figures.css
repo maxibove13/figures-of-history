@@ -1,3 +1,25 @@
+main {
+    display: grid;
+    grid-template-columns: auto 1100px auto;
+}
+
+.filters {
+
+}
+
+.figures {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 8px;
+    margin-top: 10px;
+
+}
+
+.categories {
+
+}
+
+/* Emperors cards */
 .page-container-timeline {
     border: solid black;
 }
