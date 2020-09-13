@@ -1,14 +1,11 @@
 main {
     display: grid;
-    grid-template-columns: auto 1100px auto;
+    grid-template-columns: 20% 60% 20%;
 }
 
-.filters {
 
-}
 
 .figures {
-    max-width: 1100px;
     margin: auto;
     padding: 0 8px;
     margin-top: 10px;
@@ -101,3 +98,29 @@ main {
 
 }
 
+
+/* media queries */
+
+@media (max-width: 1500px) {
+    main {
+        grid-template-columns: 80% auto;
+    }
+    .filters {
+        display: none;
+    }
+}
+
+@media (max-width: 1100px) {
+    main {
+        grid-template-columns: auto 225px;
+    }
+}
+
+@media (max-width: 800px) {
+    .categories {
+        display: none;
+    }
+    main {
+        grid-template-columns: auto;
+    }
+}

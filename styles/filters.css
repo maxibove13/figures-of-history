@@ -1,5 +1,37 @@
-.filters {
+.filters-inner {
+    position: -webkit-sticky;
     position: sticky;
     top: 50px;
-    
+    padding: 10px;
 }
+
+.filters-title {
+    display: flex;
+    align-items: center;
+}
+
+.filters-title * {
+    padding: 10px;
+}
+
+.input-content-from-to {
+    display: flex;
+    align-items: baseline;
+}
+
+.input-content-from-to * {
+    margin: 0 4px;
+}
+
+input[type="text"] {
+    width: 50px;
+}
+
+.filters p {
+    color: white;
+}
+
+.cause-of-death label {
+    padding: 0 4px;
+}
+

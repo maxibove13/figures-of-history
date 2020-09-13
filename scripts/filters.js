@@ -33,8 +33,6 @@ function filters() {
 }
 
 
-
-
 // Filter - How long did he last?
 function howLong(input1,input2) {
     // assigns user inputs.
@@ -55,6 +53,8 @@ function howLong(input1,input2) {
         return (reignYears >= minInput && reignYears <= maxInput);
      } );
 }
+
+
 
 // Filter - How many years when made Emperor?
 function ageWhenEmp(input1,input2) {

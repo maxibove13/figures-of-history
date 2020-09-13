@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="styles/general.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/figures.css">
-    <link rel="stylesheet" href="styles/search-bar.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/filters.css">
+    <link rel="stylesheet" href="styles/categories.css">
 
 
     <!-- Hover CSS -->
@@ -42,46 +42,48 @@
     <header class="header">
       <!-- Nav -->
       <nav class="main-nav">
-        <div class="logo-menu">
           <ul class="main-menu">
             <li> <img src="images/logo.png" alt="SPQR" class="logo"></li>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Princeps</a></li>
-            <li><a href="#">Dominus</a></li>
+            <li><a href="#">Imperatorum</a></li>
             <li><a href="#">Publicar</a></li>
-            <li><a href="#">Login</a></li>
           </ul>
-        </div>
-        
+          <ul class="login-register">
+            <div class="filters-button-container">
+              <button onclick="showFilters()" type="submit" id="button-filter">
+                Filters
+              </button>
+          </div>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+          </ul>
       </nav>
-
-      <form id="content">
-        <input type="text" name="input" class="input-search" id="search-input">
-        <button type="reset" class="search" id="search-btn"></button>
-      </form>
-
-
     </header>
 
     <main>
 
     <section class="filters">
+      <div class="filters-inner">
       <div class="filters-title">
+        <i class="fas fa-sliders-h fa-2x"></i>
         <h2>Filters</h2>
-        <i class="fas fa-sliders-h"></i>
       </div>
       <div class="filters-forms">
         <div class="howlong">
           <h4>How long did he last?</h4>
-          <input type="text" id="fromReigningYears" placeholder="From" onkeyup="filters()">
-          <input type="text" id="toReigningYears"placeholder="To" onkeyup="filters()">
-          <p>years</p>
+          <div class="input-content-from-to">
+            <input type="text" id="fromReigningYears" placeholder="From" onkeyup="filters()">
+            <input type="text" id="toReigningYears"placeholder="To" onkeyup="filters()">
+            <p>years</p>
+          </div>
         </div>
         <div class="age-when-emp">
           <h4>How many years when made Emperor?</h4>
-          <input type="text" id="fromAgeWhenEmperor" placeholder="From" onkeyup="filters()">
-          <input type="text" id="toAgeWhenEmperor"placeholder="To" onkeyup="filters()">
-          <p>years</p>
+          <div class="input-content-from-to">
+            <input type="text" id="fromAgeWhenEmperor" placeholder="From" onkeyup="filters()">
+            <input type="text" id="toAgeWhenEmperor"placeholder="To" onkeyup="filters()">
+            <p>years</p>
+          </div>
         </div>
         <div class="cause-of-death">
           <h4>How did he died?</h4>
@@ -101,9 +103,11 @@
           <label for="causeOfDeath4"> Unknown</label><br>
         </div>
       </div>
+
       <button onclick="removeFilters()">
         Borrar filtros
       </button>
+    </div>
     </section>
 
     <section class="figures" id="emperor-page">
@@ -115,13 +119,15 @@
 
 
     <section class="categories">
-      <h2>Dinasties / Intermissions</h2>
-      <ul class="dinasties">
-        <li><a href="#" class="hvr-forward">Julio-Claudia</a></li>
-        <li><a href="#" class="hvr-forward">Year of 4 Emperors</a></li>
-        <li><a href="#" class="hvr-forward">Flavia</a></li>
-        <li><a href="#" class="hvr-forward">Antonina</a></li>
-      </ul>
+      <div class="categories-inner">
+        <h2>Dinasties / Intermissions</h2>
+        <ul class="dinasties">
+          <li><a href="#" class="hvr-forward">Julio-Claudia</a></li>
+          <li><a href="#" class="hvr-forward">Year of 4 Emperors</a></li>
+          <li><a href="#" class="hvr-forward">Flavia</a></li>
+          <li><a href="#" class="hvr-forward">Antonina</a></li>
+        </ul>
+    </div>
     </section>
 
   </main>
@@ -262,7 +268,6 @@
     <!-- Scripts -->
     <script src="scripts/imperators-array.js"></script>
     <script src="scripts/figures.js"></script>
-    <script src="scripts/search.js"></script>
     <script src="scripts/filters.js"></script>
 
     <!-- Optional JavaScript -->
