@@ -23,6 +23,9 @@
     <!-- Hover CSS -->
     <link rel="stylesheet" href="styles/hover-min.css">
 
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <!--Google fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
@@ -33,7 +36,7 @@
 
     <title>Imperium Romanum</title>
   </head>
-  <body onload="showAllImperators()">
+  <body onload="showAllImperators(),removeFilters()">
 
 
     <header class="header">
@@ -70,9 +73,32 @@
       <div class="filters-forms">
         <div class="howlong">
           <h4>How long did he last?</h4>
-          <input type="text" id="fromReigningYears" placeholder="From" onkeyup="fromToFilter('fromReigningYears','toReigningYears')">
-          <input type="text" id="toReigningYears"placeholder="To" onkeyup="fromToFilter('fromReigningYears','toReigningYears')">
+          <input type="text" id="fromReigningYears" placeholder="From" onkeyup="filters()">
+          <input type="text" id="toReigningYears"placeholder="To" onkeyup="filters()">
           <p>years</p>
+        </div>
+        <div class="age-when-emp">
+          <h4>How many years when made Emperor?</h4>
+          <input type="text" id="fromAgeWhenEmperor" placeholder="From" onkeyup="filters()">
+          <input type="text" id="toAgeWhenEmperor"placeholder="To" onkeyup="filters()">
+          <p>years</p>
+        </div>
+        <div class="cause-of-death">
+          <h4>How did he died?</h4>
+          <input type="checkbox" id="causeOfDeath1" class="cause-of-death-input" name="causeOfDeath1" onclick="filters()" value="natural">
+          <label for="causeOfDeath1"> Natural causes</label><br>
+          <input type="checkbox" id="causeOfDeath2" class="cause-of-death-input" name="causeOfDeath2" onclick="filters()" value="poisoned">
+          <label for="causeOfDeath2"> Poisoned</label><br>
+          <input type="checkbox" id="causeOfDeath3" class="cause-of-death-input" name="causeOfDeath3" onclick="filters()" value="byTheSword">
+          <label for="causeOfDeath3"> By the sword</label><br>
+          <input type="checkbox" id="causeOfDeath4" class="cause-of-death-input" name="causeOfDeath4" onclick="filters()" value="inBattle">
+          <label for="causeOfDeath4"> In battle</label><br>
+          <input type="checkbox" id="causeOfDeath5" class="cause-of-death-input" name="causeOfDeath5" onclick="filters()" value="chokedPillow">
+          <label for="causeOfDeath4"> Choked by a pillow</label><br>
+          <input type="checkbox" id="causeOfDeath6" class="cause-of-death-input" name="causeOfDeath6" onclick="filters()" value="suicide">
+          <label for="causeOfDeath4"> Suicide</label><br>
+          <input type="checkbox" id="causeOfDeath7" class="cause-of-death-input" name="causeOfDeath7" onclick="filters()" value="unknown">
+          <label for="causeOfDeath4"> Unknown</label><br>
         </div>
       </div>
       <button onclick="removeFilters()">
@@ -167,25 +193,23 @@
 
   <!-- templates -->
     <template id="emperor-page-template">
-      <div class="page-container-timeline">
+      <div class="page-container-timeline animate__animated animate__fadeIn">
         <!-- timeline -->
-      <div id="timeline" class="time-line">
-        <div class="ticks">
-          <p>-27</p>
-          <p>476</p>
-        </div>
-        <div class="timeline-line">
-          <div class="beg-container">
-            <i class="fas fa-chevron-right fa-2x beg" id="circle-beg"></i>
-            
+        <div id="timeline" class="time-line">
+          <div class="ticks">
+            <p>-27</p>
+            <p>476</p>
           </div>
-          
-          <div class="end-container">
-            <i class="fas fa-chevron-left fa-2x end" id="circle-end"></i>
+          <div class="timeline-line">
+            <div class="beg-container">
+              <i class="fas fa-chevron-right fa-2x beg" id="circle-beg"></i>
+            </div>        
+            <div class="end-container">
+              <i class="fas fa-chevron-left fa-2x end" id="circle-end"></i>
+            </div>
+            <p class="emperor-length"></p>
           </div>
-          <p class="emperor-length"></p>
         </div>
-      </div>
         <div class="emperor-page-container">
               <!--Left column -->
           <div class="left-column-emperor">
@@ -218,6 +242,11 @@
           </div>
         </div>
       </div>
+    </template>
+
+    <!-- Message, emperor not found -->
+    <template id="emperorNotFound">
+      <h1>The emperor with all those characteristic did not exist. Allegedly...</h1>
     </template>
 
 

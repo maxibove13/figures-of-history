@@ -7,6 +7,7 @@ let emperors = [
         Born: -60,
         originCity: "Rome",
         originProvince: "Italy",
+        causeOfDeath: "natural",
         emperorImages: [
             'images/emperors/augustus-bust.jpg',
             'images/emperors/augustus-statue.jpg',
@@ -21,6 +22,7 @@ let emperors = [
         Born: -40,
         originCity: "Rome",
         originProvince: "Italy",
+        causeOfDeath: "chokedPillow",
         emperorImages: [
             'images/emperors/tiberius-bust.jpg',
             'images/emperors/tiberius-statue.jpg',
@@ -36,6 +38,7 @@ let emperors = [
         Born: 12,
         originCity: "Rome",
         originProvince: "Italy",
+        causeOfDeath: "byTheSword",
         emperorImages: [
             'images/emperors/caligula-bust.jpg',
             'images/emperors/caligula-statue.jpg',
@@ -51,6 +54,7 @@ let emperors = [
         Born: -10,
         originCity: "Lugdunum (Lyon)",
         originProvince: "Galia",
+        causeOfDeath: "poisoned",
         emperorImages: [
             'images/emperors/claudius-bust.jpg',
             'images/emperors/claudius-statue.jpg',
@@ -67,6 +71,7 @@ let emperors = [
         Born: 37,
         originCity: "Rome",
         originProvince: "Italy",
+        causeOfDeath: "suicide",
         emperorImages: [
             'images/emperors/nero-bust.jpg',
             'images/emperors/nero-statue.jpg',

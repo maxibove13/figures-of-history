@@ -1,14 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fontawesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--Styles-->
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/figure.css">
+    <link rel="stylesheet" href="styles/search-bar.css">
+    <link rel="stylesheet" href="styles/header.css">
 
-      <!-- carousel items -->
-      <template id="carousel-item-id">
-        <div class="carousel-item">
-          <img src="" alt="" class="d-block">
+    <!-- Hover CSS -->
+    <link rel="stylesheet" href="styles/hover-min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> 
+
+    <title>Imperium Romanum</title>
+  </head>
+    <header class="header">
+      <!-- Nav -->
+      <nav class="main-nav">
+        <img src="images/logo.png" alt="SPQR" class="logo">
+        <ul class="main-menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Princeps</a></li>
+          <li><a href="#">Dominus</a></li>
+          <li><a href="#">Publicar</a></li>
+        </ul>
+        <ul class="right-menu">
+          <li>
+            <a href="#">
+              <i class="fas fa-search"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-user-alt"></i>
+            </a>
+          </li>
+        </ul>
+        <div class="logo-menu">
+          <ul class="main-menu">
+            <li> <img src="images/logo.png" alt="SPQR" class="logo"></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Princeps</a></li>
+            <li><a href="#">Dominus</a></li>
+            <li><a href="#">Publicar</a></li>  
+          </ul>
         </div>
-      </template>
+        <a href="#">Login</a>
+      </nav>
 
+      <form id="content">
+        <input type="text" name="input" class="input-search" id="search-input">
+        <button type="reset" class="search" id="search-btn"></button>
+      </form>
+
+
+    </header>
+
+
+<h3>Inspire your inbox</h3>
+        </div>
+        <div class="timeline-line">
+          <div class="beg-container">
+            <i class="fas fa-chevron-right beg" id="circle-beg"></i>
+            <i class="fas fa-chevron-right fa-2x beg" id="circle-beg"></i>
+
+          </div>
+
+          <div class="end-container">
+            <i class="fas fa-chevron-left end" id="circle-end"></i>
+            <i class="fas fa-chevron-left fa-2x end" id="circle-end"></i>
+          </div>
+          <p class="emperor-length"></p>
+        </div>
+<h1 class="emperor-title-name"></h1>
 
     <!-- Scripts -->
-    <script src="scripts/arrays.js"></script>
+    <script src="scripts/figures.js"></script>
+    <script src="scripts/search.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
