@@ -72,27 +72,27 @@
         <div class="howlong">
           <h4>How long did he last?</h4>
           <div class="input-content-from-to">
-            <input type="text" id="fromReigningYears" placeholder="From" onkeyup="filters()">
+            <input type="number" id="fromReigningYears"  placeholder="From" onkeyup="filters()" onclick="filters()" >
             <p> - </p>
-            <input type="text" id="toReigningYears"placeholder="To" onkeyup="filters()">
+            <input type="number" id="toReigningYears" min='0' max='50' placeholder="To" onkeyup="filters()" onclick="filters()">
             <p>years</p>
           </div>
         </div>
         <div class="age-when-emp">
           <h4>What age did he was when made Emperor?</h4>
           <div class="input-content-from-to">
-            <input type="text" id="fromAgeWhenEmperor" placeholder="From" onkeyup="filters()">
+            <input type="number" id="fromAgeWhenEmperor" min='0' max='100' placeholder="From" onkeyup="filters()" onclick="filters()">
             <p> - </p>
-            <input type="text" id="toAgeWhenEmperor"placeholder="To" onkeyup="filters()">
+            <input type="number" id="toAgeWhenEmperor" min='0' max='100' placeholder="To" onkeyup="filters()" onclick="filters()">
             <p>years old</p>
           </div>
         </div>
         <div class="year-span">
-          <h4>In what years did he live?</h4>
+          <h4>In what years did he Reign?</h4>
           <div class="input-content-from-to">
-            <input type="text" id="fromYearSpan" placeholder="From" onkeyup="filters()">
+            <input type="number" id="fromYearSpan" min='-27' max='476' placeholder="From" onkeyup="filters()" onclick="filters()">
             <p> - </p>
-            <input type="text" id="toYearSpan"placeholder="To" onkeyup="filters()">
+            <input type="number" id="toYearSpan" min='-27' max='476' placeholder="To" onkeyup="filters()" onclick="filters()">
             <p>A.D</p>
           </div>
         </div>

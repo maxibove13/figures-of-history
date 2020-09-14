@@ -25,6 +25,7 @@ function filters() {
         howLong('fromReigningYears','toReigningYears');
         ageWhenEmp('fromAgeWhenEmperor','toAgeWhenEmperor');
         causeofDeath();
+        inWhatYearsDidHeReign('fromYearSpan','toYearSpan');
 
         // call function to clone template and fill data given filtered array.
         fillData(filteredArray);
@@ -57,6 +58,7 @@ function howLong(input1,input2) {
         return (reignYears >= minInput && reignYears <= maxInput);
      } );
 }
+
 
 
 
@@ -102,6 +104,26 @@ function causeofDeath() {
     })
 }
 
+// Filter - In what years did he live?
+function inWhatYearsDidHeReign(input1,input2) {
+    // assigns user inputs.
+    let minInput = document.getElementById(input1).value;
+    let maxInput = document.getElementById(input2).value;
+    // If user leaves blank space, assigns values from beg to end of roman empire
+    if (minInput == "" && maxInput == "") {
+        minInput = -27;
+        maxInput = 476; //to end of Western Roman Empire.
+    }   else if (minInput == "") {
+        minInput = -27;
+    }   else if (maxInput == "") {
+        maxInput = 476; //to end of Western Roman Empire.
+    }
+    // filter condition
+    filteredArray = filteredArray.filter(function(emperor) {
+    return (minInput <= emperor.emperorUntil && maxInput >= emperor.emperorFrom);
+    } );
+}
+
 // Function to remove all filters.
 function removeFilters() {
     while (container.hasChildNodes()) {
@@ -114,12 +136,10 @@ function removeFilters() {
         checkboxesDeath[i].checked = 0;
     }
     // Reset input values
-    document.getElementById("fromReigningYears").value = '';
-    document.getElementById("toReigningYears").value = '';
-    document.getElementById("fromAgeWhenEmperor").value = '';
-    document.getElementById("toAgeWhenEmperor").value = '';
-
-
+    const filterInputs = document.querySelectorAll('.filters input[type="number"]');
+    for (let i = 0; i < filterInputs.length; i++) {
+        filterInputs[i].value = '';
+    }
     // Call function that shows the complete list of emperors.
     showAllImperators();
 }
