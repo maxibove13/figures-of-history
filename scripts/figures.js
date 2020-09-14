@@ -14,22 +14,20 @@ function offOverlay() {
 }
 
 
+
+
+// Filter button behaviour
+const filtersSideBar = document.getElementsByClassName('filters')[0];
+const buttonFilter = document.getElementById('button-filter');
 // Show filters after clicking on Filters button (for max-width:1500px)
 function showFilters() {
-    const filtersBtn = document.getElementsByClassName('filters');
-    if (filtersBtn[0].style.display == 'none')
-    {
-        filtersBtn[0].style.display = 'block';
-        filtersBtn[0].style.position = 'fixed';
-        filtersBtn[0].style.background = 'white';
-        filtersBtn[0].style.zIndex = '10';
-        filtersBtn[0].style.height = '100%';
-    } else {
-        filtersBtn[0].style.display = 'none';
-    }
-
+    filtersSideBar.classList.toggle("filters-sidebar");
+    buttonFilter.classList.toggle("button-activated")
 }
-
-
-
-
+// To prevent the filter from activating automatically when resizing.
+function correctFiltersSidebar() {
+    if (window.innerWidth >= 1500) {
+        filtersSideBar.classList.remove("filters-sidebar");
+        buttonFilter.classList.remove("button-activated");
+    }
+}

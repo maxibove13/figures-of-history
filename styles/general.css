@@ -46,6 +46,19 @@ h4 {
 a {
     color: #fff;
     text-decoration: none;
+    outline: 0;
+}
+
+button {
+    outline: 0 !important;
+    font-weight: bold;
+    background-color: transparent;
+    border: solid white;
+    padding: 2px 4px;
+    color: white;
+    transition-duration: 0.165s;
+    transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
+    border-radius: 6px !important;
 }
 
 p {

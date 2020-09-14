@@ -2,16 +2,29 @@
     position: -webkit-sticky;
     position: sticky;
     top: 50px;
-    padding: 10px;
 }
 
 .filters-title {
     display: flex;
     align-items: center;
+    color: white;
+    border-bottom: solid white;
+    border-width: 1px;
+    width: 100%;
 }
 
 .filters-title * {
     padding: 10px;
+}
+
+.filters-forms {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.filters-forms div {
+    padding: 10px 0;
 }
 
 .input-content-from-to {
@@ -27,6 +40,7 @@ input[type="text"] {
     width: 50px;
 }
 
+
 .filters p {
     color: white;
 }
@@ -35,3 +49,15 @@ input[type="text"] {
     padding: 0 4px;
 }
 
+label {
+    color: white;
+}
+
+.filters button {
+    margin: 10px;
+}
+
+.filters button:hover {
+    color: #242421 !important;
+    background-color: white !important;
+}

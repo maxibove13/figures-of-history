@@ -10,7 +10,11 @@ function showAllImperators() {
 
 
 function filters() {
-    setTimeout(function(){
+    // Clear time variable on queue.
+    if (typeof timeVar !== "undefined") {
+        clearTimeout(timeVar)
+    }
+    timeVar = setTimeout(function(){
         // clean the container.
         while (container.hasChildNodes()) {
             container.removeChild(container.lastChild)

@@ -69,21 +69,20 @@ header a {
 }
 
 #button-filter {
-    background-color: transparent;
-    border: solid white;
-    padding: 2px 4px;
     margin: 10px;
-    color: white;
-    font-weight: bold;
-    border-radius: 6px !important;
     height: inherit;
-    transition-duration: 0.165s;
-    transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
 }
 
+/*
 #button-filter:hover {
     color: #2c001e;
     background-color: white; 
+}
+*/
+
+.button-activated {
+    color: #2c001e !important;
+    background-color: white !important;
 }
 
 /* media queries */

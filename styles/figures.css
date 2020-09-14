@@ -3,13 +3,17 @@ main {
     grid-template-columns: 20% 60% 20%;
 }
 
+.filters {
+    background: #242421;
+    transition: left 0.7s;
+    width: 300px;
+}
 
 
 .figures {
     margin: auto;
     padding: 0 8px;
     margin-top: 10px;
-
 }
 
 .categories {
@@ -98,6 +102,10 @@ main {
 
 }
 
+.filters-sidebar {
+    left: 0 !important;
+}
+
 
 /* media queries */
 
@@ -106,7 +114,10 @@ main {
         grid-template-columns: 80% auto;
     }
     .filters {
-        display: none;
+        position: fixed;
+        left: -30em;
+        z-index: 10;
+        height: 100%
     }
 }
 
