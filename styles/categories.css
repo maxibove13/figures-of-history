@@ -1,8 +1,9 @@
 .categories-inner {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 50px;
     padding: 10px;
+}
+
+.categories h2 {
+    color: white;
 }
 
 .dinasties {
@@ -14,4 +15,37 @@
 
 .dinasties li {
     font-size: 1.3rem;
+    padding-left: 8px;
 }
+
+.dinasties i {
+    display: none;
+}
+
+.dinasties a {
+    transition-property: all;
+    transition-duration: 0.165s;
+    transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
+}
+
+/*
+.dinasties i a:active {
+    display: block;
+}
+*/
+
+.dinasty-container {
+    display: flex !important;
+    align-items: baseline;
+    color: white;
+}
+
+.categories button {
+    margin-top: 32px;
+}
+
+.categories button:hover {
+    background: white;
+    color: #672947;
+}
+

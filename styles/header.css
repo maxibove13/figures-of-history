@@ -23,13 +23,17 @@
 .main-menu {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 10px;
+    margin: 0;
     height: inherit;
     justify-content: center;
 }
 
 .main-menu a {
     margin-left: 10px;
+}
+
+.main-menu:first-child {
+    padding-left: 16px;
 }
 
 .login-register {
@@ -43,7 +47,7 @@
 }
 
 .login-register a {
-    padding: 0.9rem 1rem 0.74rem 1rem;
+    padding: 0.9rem 1rem 0.50rem 1rem;
 }
 
 .login-register a:hover {
@@ -52,13 +56,13 @@
 
 .logo {
     width: 60px;
-
+    margin-left: 16px;
 }
 
 header a {
     display: block;
     font-weight: normal;
-    padding: .35rem 1rem 0.74rem 1rem;
+    padding: .50rem 1rem 0.74rem 1rem;
     transition-property: all;
     transition-duration: 0.165s;
     transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
@@ -68,9 +72,10 @@ header a {
     background: #682946;
 }
 
-#button-filter {
+#button-filters,#button-categories {
     margin: 10px;
     height: inherit;
+    display: none;
 }
 
 /*
@@ -85,48 +90,42 @@ header a {
     background-color: white !important;
 }
 
+.menu-wrap {
+    display: none;
+}
+
+.ghost-icon {
+    opacity: 0;
+}
+
+
+
+
 /* media queries */
 
-@media (min-width: 1500px) {
-    #button-filter {
-        display: none;
+@media (max-width: 1500px) {
+    #button-filters {
+        display: block;
     }
 }
 
 
-header li a:hover {
-
+@media (max-width: 800px) {
+    /* Remove the nav bar in header */
+    .main-menu a, .login-register a {
+        display: none;
+    }
+    /* display dynasties button */
+    #button-categories {
+        display: block;
+    }
+    .logo {
+        margin-left: 170px;
+    }
 }
 
-/*
-
-.main-nav ul li {
-    padding: 0 10px;
+@media (min-width: 800px) {
+    .ghost-icon {
+        display: none;
+    }
 }
-
-.main-nav ul li a {
-    padding-bottom: 2px;
-    font-weight: normal;
-
-}
-
-.main-nav ul li a:hover {
-    border-bottom: 2px solid white;
-}
-
-.main-nav ul.main-menu {
-    flex: 1;
-    margin-left: 20px;
-}
-
-.main-nav .logo {
-    width: 60px;
-}
-
-*/
-
-.search-login a {
-
-}
-
-

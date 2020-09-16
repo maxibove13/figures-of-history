@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/filters.css">
     <link rel="stylesheet" href="styles/categories.css">
+    <link rel="stylesheet" href="styles/mobile-menu.css">
 
 
     <!-- Hover CSS -->
@@ -36,28 +37,55 @@
 
     <title>Imperium Romanum</title>
   </head>
-  <body onload="showAllImperators(),removeFilters()" onresize="correctFiltersSidebar()">
+  <body onload="showAllImperators(),removeFilters()" onresize="correctSidebars()">
 
 
     <header class="header">
-      <!-- Nav -->
+      <!-- Desktop Nav -->
       <nav class="main-nav">
-          <ul class="main-menu">
-            <li> <img src="images/logo.png" alt="SPQR" class="logo"></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Imperatorum</a></li>
-            <li><a href="#">Publicar</a></li>
-          </ul>
-          <ul class="login-register">
-            <div class="filters-button-container">
-              <button onclick="showFilters()" type="submit" id="button-filter">
-                Filters
-              </button>
+        <i class="fas fa-bars ghost-icon"></i>
+        <ul class="main-menu">
+          
+          <li> <img src="images/logo.png" alt="SPQR" class="logo"></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Imperatorum</a></li>
+          <li><a href="#">Publicar</a></li>
+        </ul>
+        <ul class="login-register">
+          <div class="filters-button-container">
+            <button type="submit" id="button-categories">
+              Dynasties
+            </button>
           </div>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-          </ul>
+          <div class="filters-button-container">
+            <button type="submit" id="button-filters">
+              Filters
+            </button>
+          </div>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
       </nav>
+
+      <!-- Mobile Nav -->
+      <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger"><div></div></div>
+        <div class="mobile-menu">
+          <div>
+            <div>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Imperatorum</a></li>
+                <li><a href="#">Publicar</a></li>
+                <li><a id="login-mobile-menu" href="#">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </header>
 
     <main>
@@ -114,7 +142,6 @@
           <label for="causeOfDeath4"> Unknown</label><br>
         </div>
       </div>
-
       <button onclick="removeFilters()">
         Remove filters
       </button>
@@ -133,10 +160,25 @@
       <div class="categories-inner">
         <h2>Dinasties / Intermissions</h2>
         <ul class="dinasties">
-          <li><a href="#" class="hvr-forward">Julio-Claudia</a></li>
-          <li><a href="#" class="hvr-forward">Year of 4 Emperors</a></li>
-          <li><a href="#" class="hvr-forward">Flavia</a></li>
-          <li><a href="#" class="hvr-forward">Antonina</a></li>
+          <div class="dinasty-container ">
+            <i class="fas fa-chevron-right"></i>
+            <li><a href="#" >Julio-Claudia</a></li>
+          </div>
+          <div class="dinasty-container ">
+            <i class="fas fa-chevron-right"></i>
+            <li><a href="#" >Year of 4 Emperors</a></li>
+          </div>
+          <div class="dinasty-container ">
+            <i class="fas fa-chevron-right"></i>
+            <li><a href="#" >Flavia</a></li>
+          </div>
+          <div class="dinasty-container ">
+            <i class="fas fa-chevron-right"></i>
+            <li><a href="#" >Nerva-Antonina</a></li>
+          </div>
+          <button onclick="removeCategories()">
+            Show all Emperors
+          </button>
         </ul>
     </div>
     </section>
@@ -280,6 +322,7 @@
     <script src="scripts/imperators-array.js"></script>
     <script src="scripts/figures.js"></script>
     <script src="scripts/filters.js"></script>
+    <script src="scripts/categories.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

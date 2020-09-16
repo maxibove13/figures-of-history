@@ -43,6 +43,13 @@ function howLong(input1,input2) {
     // assigns user inputs.
     let minInput = document.getElementById(input1).value;
     let maxInput = document.getElementById(input2).value;
+    // If minInput > maxInput, revert them.
+    if (minInput > maxInput) {
+        minI = maxInput;
+        maxI = minInput;
+        minInput = minI;
+        maxInput = maxI;
+    }
     // If user leaves blank space, assigns values of 0 and inf.
     if (minInput == "" && maxInput == "") {
         minInput = 0;
@@ -67,6 +74,12 @@ function ageWhenEmp(input1,input2) {
     // assigns user inputs.
     let minInput = document.getElementById(input1).value;
     let maxInput = document.getElementById(input2).value;
+    if (minInput > maxInput) {
+        minI = maxInput;
+        maxI = minInput;
+        minInput = minI;
+        maxInput = maxI;
+    }
     // If user leaves blank space, assigns values of 0 and inf.
     if (minInput == "" && maxInput == "") {
         minInput = 0;
@@ -109,6 +122,12 @@ function inWhatYearsDidHeReign(input1,input2) {
     // assigns user inputs.
     let minInput = document.getElementById(input1).value;
     let maxInput = document.getElementById(input2).value;
+    if (minInput > maxInput) {
+        minI = maxInput;
+        maxI = minInput;
+        minInput = minI;
+        maxInput = maxI;
+    }
     // If user leaves blank space, assigns values from beg to end of roman empire
     if (minInput == "" && maxInput == "") {
         minInput = -27;
@@ -156,7 +175,7 @@ function fillData(filteredArray) {
         itemClone.querySelector('.emperor-range').innerText = filteredArray[i].emperorFrom + '-' + filteredArray[i].emperorUntil;
         itemClone.querySelector('.main-img').src = filteredArray[i].emperorImages[1];
         itemClone.querySelector('.main-img').alt = filteredArray[i].emperorName;
-        itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArray[i].originCity;
+        itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArray[i].originCity + ', ' + filteredArray[i].originProvince;
         itemClone.querySelector('.ageWhenEmperor').innerText = 'Age when emperor: ' + Math.abs(Math.abs(filteredArray[i].emperorFrom) - Math.abs(filteredArray[i].Born));
         itemClone.querySelector('.description').innerText = filteredArray[i].emperorDescription;
         itemClone.querySelector('.emperor-page-images').src = filteredArray[i].emperorImages[2];

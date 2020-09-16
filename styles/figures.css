@@ -1,6 +1,6 @@
 main {
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: auto auto auto;
 }
 
 .filters {
@@ -13,16 +13,23 @@ main {
 .figures {
     margin: auto;
     padding: 0 8px;
-    margin-top: 10px;
 }
 
 .categories {
+    background: #672947;
+    transition: right 0.7s;
+    width: 365px;
+}
 
+.filters-inner,.categories-inner {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 56px;
 }
 
 /* Emperors cards */
 .page-container-timeline {
-    border: solid black;
+
 }
 
 .emperor-page-container {
@@ -102,17 +109,17 @@ main {
 
 }
 
-.filters-sidebar {
+.sidebar-filter {
     left: 0 !important;
 }
 
+.sidebar-category {
+    right: 0 !important;
+}
 
 /* media queries */
 
 @media (max-width: 1500px) {
-    main {
-        grid-template-columns: 80% auto;
-    }
     .filters {
         position: fixed;
         left: -30em;
@@ -122,16 +129,31 @@ main {
 }
 
 @media (max-width: 1100px) {
+    /* resize categories sidebar */
     main {
-        grid-template-columns: auto 225px;
+        grid-template-columns: auto 250px;
+    }
+    /* Resize categories */
+    .categories {
+        width: 250px;
     }
 }
 
 @media (max-width: 800px) {
     .categories {
-        display: none;
+        position: fixed;
+        right: -30em;
+        z-index: 10;
+        height: 100%
     }
     main {
         grid-template-columns: auto;
+    }
+}
+
+@media (max-width: 500px) {
+    /* Remove timeline for small size */
+    .time-line {
+        display: none;
     }
 }
