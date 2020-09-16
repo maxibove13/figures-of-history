@@ -11,15 +11,17 @@ for (let dinastyIndex = 0; dinastyIndex < dinasties.length; dinastyIndex++) {
 
 // Function to select a category
 function selectCategory(dinastyIndex) {
+    // Turn on flag that indicates that a category has been selected.
+    isCategory = 1;
     // Given the category selected slice the emperors array to that certain dinasty.
     if (dinastyIndex == 0) {
-        dinastyArray = emperors.slice(0,4);
+        dinastyArray = emperors.slice(0,5);
     }   else if (dinastyIndex == 1) {
-        dinastyArray = emperors.slice(5,8);
+        dinastyArray = emperors.slice(5,9);
     }   else if (dinastyIndex == 2) {
-        dinastyArray = emperors.slice(8,10);
+        dinastyArray = emperors.slice(8,11);
     }   else if (dinastyIndex == 3) {
-        dinastyArray = emperors.slice(11,17);
+        dinastyArray = emperors.slice(11,18);
     }
     // Prevents from reloading unpurposely if category already selected.
     if (dinastyArray.length == document.querySelectorAll('.emperor-title-name').length) {
@@ -68,6 +70,12 @@ function removeCategories() {
         dinastiesChevron[i].style.display = 'none';
         dinasties[i].style.fontWeight = 'normal';
     }
+    // Turn off category flag.
+    isCategory = 0;
+    // Back to top.
+    topFunction();
+    // Remove all filters
+    removeFilters()
     // Call function that shows the complete list of emperors.
     showAllImperators();
 }

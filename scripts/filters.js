@@ -2,14 +2,26 @@
 const container = document.querySelector(".figures")
 const emperorPageTemplate = document.getElementById("emperor-page-template");
 
+const nItemsPerPage = 5;
+
 // get the emperor page with all emperors //
 function showAllImperators() {
-        fillData(emperors);
+        // clean the container.
+        while (container.hasChildNodes()) {
+            container.removeChild(container.lastChild)
+        }
+        // Category off
+        isCategory = 0;
+        isFilter = 0;
+        filteredArray = emperors;
+        fillData(filteredArray);
 }
 
 
 
 function filters() {
+    // turn on filters flag.
+    isFilter = 1;
     // Clear time variable on queue.
     if (typeof timeVar !== "undefined") {
         clearTimeout(timeVar)
@@ -19,8 +31,14 @@ function filters() {
         while (container.hasChildNodes()) {
             container.removeChild(container.lastChild)
         }
-        // Initialize filteredArray as the full emperor list.
-        window.filteredArray = emperors;
+        if (isCategory) {
+            // If a category is selected initialize filteredArray as the category array.
+            window.filteredArray = dinastyArray
+        }   else {
+            // Initialize filteredArray as the full emperor list.
+            window.filteredArray = emperors;
+        }
+
         // Call all filters functions.
         howLong('fromReigningYears','toReigningYears');
         ageWhenEmp('fromAgeWhenEmperor','toAgeWhenEmperor');
@@ -34,6 +52,7 @@ function filters() {
             const itemClone = document.getElementById("emperorNotFound").content.cloneNode(true);
             container.appendChild(itemClone);
         }
+        topFunction()
     },2000)
 }
 
@@ -166,25 +185,33 @@ function removeFilters() {
 
 // Function to fill the emperor card given a filteredArray
 function fillData(filteredArray) {
+    // if array has more than 10 items
+    if (filteredArray.length > nItemsPerPage) {
+        infiniteScroll(filteredArray);
+    }   else {
+        filteredArrayToShow = filteredArray;
+    }
+
+
     // loop through all filtered elements
-    for (let i = 0; i < filteredArray.length; i++) {
+    for (let i = 0; i < filteredArrayToShow.length; i++) {
         // define item clone from template //
         const itemClone = emperorPageTemplate.content.cloneNode(true)
         // get emperor data from array and write it inside the template //
-        itemClone.querySelector('.emperor-title-name').innerText = filteredArray[i].emperorName;
-        itemClone.querySelector('.emperor-range').innerText = filteredArray[i].emperorFrom + '-' + filteredArray[i].emperorUntil;
-        itemClone.querySelector('.main-img').src = filteredArray[i].emperorImages[1];
-        itemClone.querySelector('.main-img').alt = filteredArray[i].emperorName;
-        itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArray[i].originCity + ', ' + filteredArray[i].originProvince;
-        itemClone.querySelector('.ageWhenEmperor').innerText = 'Age when emperor: ' + Math.abs(Math.abs(filteredArray[i].emperorFrom) - Math.abs(filteredArray[i].Born));
-        itemClone.querySelector('.description').innerText = filteredArray[i].emperorDescription;
-        itemClone.querySelector('.emperor-page-images').src = filteredArray[i].emperorImages[2];
-        itemClone.querySelector('.emperor-page-images').alt = filteredArray[i].emperorImages[2];
-        itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(filteredArray[i].emperorUntil) - filteredArray[i].emperorFrom) + ' years'
+        itemClone.querySelector('.emperor-title-name').innerText = filteredArrayToShow[i].emperorName;
+        itemClone.querySelector('.emperor-range').innerText = filteredArrayToShow[i].emperorFrom + '-' + filteredArrayToShow[i].emperorUntil;
+        itemClone.querySelector('.main-img').src = filteredArrayToShow[i].emperorImages[1];
+        itemClone.querySelector('.main-img').alt = filteredArrayToShow[i].emperorName;
+        itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArrayToShow[i].originCity + ', ' + filteredArrayToShow[i].originProvince;
+        itemClone.querySelector('.ageWhenEmperor').innerText = 'Age when emperor: ' + Math.abs(Math.abs(filteredArrayToShow[i].emperorFrom) - Math.abs(filteredArrayToShow[i].Born));
+        itemClone.querySelector('.description').innerText = filteredArrayToShow[i].emperorDescription;
+        itemClone.querySelector('.emperor-page-images').src = filteredArrayToShow[i].emperorImages[2];
+        itemClone.querySelector('.emperor-page-images').alt = filteredArrayToShow[i].emperorImages[2];
+        itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(filteredArrayToShow[i].emperorUntil) - filteredArrayToShow[i].emperorFrom) + ' years'
 
         // Define the dots position
-        beg = filteredArray[i].emperorFrom;
-        end = filteredArray[i].emperorUntil;
+        beg = filteredArrayToShow[i].emperorFrom;
+        end = filteredArrayToShow[i].emperorUntil;
         relativeBeg = Math.abs(((-27)-beg)/(476+27)*100)
         relativeEnd = Math.abs(((-27)-end)/(476+27)*100)
 
@@ -196,6 +223,44 @@ function fillData(filteredArray) {
     }
 }
 
+// Display only 10 emperors at a time.
+if (container.children.length > 10) {
+    for (let i = 10; i < container.children.length; i++) {
+        container.children[i].style.display = 'none';
+    }
+} 
+
+// Listen when scroll to near botton
+window.addEventListener('scroll', function() {
+    const docHTML = document.documentElement;
+    // Define the "scroll to near botton"
+    if ((docHTML.scrollTop+docHTML.clientHeight)/docHTML.offsetHeight >= 0.85) {
+        // If a category is selected pass on the category array.
+        if (isCategory && isFilter == 0) {
+            // If all Items are already displayed do nothing.
+            if (container.children.length == dinastyArray.length) {
+                // Else add more items
+            }   else {
+                fillData(dinastyArray)    
+            }
+        }   else {
+            if (container.children.length == filteredArray.length) {
+            }   else {
+                fillData(filteredArray);
+            }
+        }
+    }
+});
 
 
-    
+function infiniteScroll(filteredArray) {
+    // Number of actual items being displayed.
+    nItemsDisplayed = container.children.length;
+    if (container.children.length+nItemsPerPage >= filteredArray.length) {
+        filteredArrayToShow = filteredArray.slice(container.children.length,filteredArray.length);
+    }   else if (container.children.length == 0) {
+        filteredArrayToShow = filteredArray.slice(0,nItemsPerPage);
+    }   else {
+        filteredArrayToShow = filteredArray.slice(container.children.length,container.children.length+nItemsPerPage);
+    }
+}

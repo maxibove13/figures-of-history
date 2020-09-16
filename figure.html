@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="styles/filters.css">
     <link rel="stylesheet" href="styles/categories.css">
     <link rel="stylesheet" href="styles/mobile-menu.css">
+    <link rel="stylesheet" href="styles/scroll-toTop-button.css">
 
 
     <!-- Hover CSS -->
@@ -37,7 +38,7 @@
 
     <title>Imperium Romanum</title>
   </head>
-  <body onload="showAllImperators(),removeFilters()" onresize="correctSidebars()">
+  <body onload="showAllImperators(),removeFilters(),topFunction()" onresize="correctSidebars()">
 
 
     <header class="header">
@@ -49,7 +50,7 @@
           <li> <img src="images/logo.png" alt="SPQR" class="logo"></li>
           <li><a href="#">Home</a></li>
           <li><a href="#">Imperatorum</a></li>
-          <li><a href="#">Publicar</a></li>
+          <li><a href="#">Publish</a></li>
         </ul>
         <ul class="login-register">
           <div class="filters-button-container">
@@ -162,19 +163,19 @@
         <ul class="dinasties">
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Julio-Claudia</a></li>
+            <li><a href="#" >Julio-Claudia (27 B.C - 68 A.D)</a></li>
           </div>
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Year of 4 Emperors</a></li>
+            <li><a href="#" >Year of 4 Emperors (68 - 69)</a></li>
           </div>
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Flavia</a></li>
+            <li><a href="#" >Flavia (69 - 96)</a></li>
           </div>
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Nerva-Antonina</a></li>
+            <li><a href="#" >Nerva-Antonina (96 - 192)</a></li>
           </div>
           <button onclick="removeCategories()">
             Show all Emperors
@@ -182,6 +183,11 @@
         </ul>
     </div>
     </section>
+
+    <!-- Scroll to top button -->
+    <div class="scrollttb-container">
+      <i class="fas fa-chevron-up fa-2x hvr-bob"></i>
+    </div>
 
   </main>
 

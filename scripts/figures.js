@@ -58,3 +58,35 @@ function correctSidebars() {
         buttonFilters.classList.toggle('button-activated', false);
     }
 }
+
+// Add eventlistener to hamburger menu
+document.querySelector('.menu-wrap .toggler').addEventListener('click', closeSidebars)
+// Function to close categories and filters.
+function closeSidebars() {
+    if (document.querySelector('.menu-wrap .toggler').checked) {
+        // Make sure the sidebar is deactivated. 
+        sidebarCategories.classList.toggle('sidebar-category', false);
+        buttonCategories.classList.toggle('button-activated', false);
+        sidebarFilters.classList.toggle('sidebar-filter', false);
+        buttonFilters.classList.toggle('button-activated', false);
+    }
+}
+
+
+// Scroll to top button behaviour.
+// Add event listener to scroll to top button.
+const scrollButton = document.querySelector('.scrollttb-container');
+scrollButton.addEventListener('click', topFunction)
+// Only show button when scrolled.
+window.onscroll = function() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollButton.style.display = 'flex';
+    }   else {
+            scrollButton.style.display = 'none';
+    }
+};
+// Function to go back to top.
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
