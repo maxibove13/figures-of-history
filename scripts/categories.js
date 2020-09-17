@@ -1,19 +1,7 @@
-// Gather the node list with all categories.
-const dinasties = document.querySelectorAll('.categories a');
-// For all the categories add an eventListener.
-for (let dinastyIndex = 0; dinastyIndex < dinasties.length; dinastyIndex++) {
-    dinasties[dinastyIndex].addEventListener('click', function() {
-        selectCategory(dinastyIndex);
-    });
-}
-
-
-
 // Function to select a category
 function selectCategory(dinastyIndex) {
-    // Turn on flag that indicates that a category has been selected.
-    isCategory = 1;
-    // Given the category selected slice the emperors array to that certain dinasty.
+    dinastiesChevron = document.querySelectorAll('.categories i');
+    // Given the selected category slice the emperors array to that certain dinasty.
     if (dinastyIndex == 0) {
         dinastyArray = emperors.slice(0,5);
     }   else if (dinastyIndex == 1) {
@@ -22,41 +10,31 @@ function selectCategory(dinastyIndex) {
         dinastyArray = emperors.slice(8,11);
     }   else if (dinastyIndex == 3) {
         dinastyArray = emperors.slice(11,18);
+        // if dinastyArrya = -1 no category is selected.
+    }   else {
+        return;
+    }
+    // Remove the style of selected categories (in case another category was selected before)
+    for(let i = 0; i < dinasties.length; i++) {
+        dinastiesChevron[i].style.display = 'none';
+        dinasties[i].style.fontWeight = 'normal';
     }
     // Prevents from reloading unpurposely if category already selected.
-    if (dinastyArray.length == document.querySelectorAll('.emperor-title-name').length) {
-        for (let i = 0; i <= dinastyArray.length; i++) {
-            if (dinastyArray[i].emperorName !== document.querySelectorAll('.emperor-title-name')[i].innerHTML) {
-                break;
-            }
-            return;
-        }
-    }
-    // Clean container
-    while (container.hasChildNodes()) {
-        container.removeChild(container.lastChild)
-    }
-    // Call function to clone the selected dinasty's emperors.
-    fillData(dinastyArray);
+    // if (dinastyArray.length == document.querySelectorAll('.emperor-title-name').length) {
+    //     for (let i = 0; i <= dinastyArray.length; i++) {
+    //         if (dinastyArray[i].emperorName !== document.querySelectorAll('.emperor-title-name')[i].innerHTML) {
+    //             break;
+    //         }
+    //         return;
+    //     }
+    // }
+    // Style the selected dinasty.
+    // Show chevron-right icon when clicking category.
+    dinastiesChevron[dinastyIndex].style.display = 'block';
+    dinasties[dinastyIndex].style.fontWeight = 'bold';
+    // Make the dinastyArray as the general filteredArray to process in filters function.
+    filteredArray = dinastyArray;
 }
-
-
-// Show chevron-right icon when clicking category.
-const dinastiesChevron = document.querySelectorAll('.categories i');
-// For all categories add an eventListener.
-
-for (let dinastyIndex = 0; dinastyIndex < dinasties.length; dinastyIndex++) {
-    dinasties[dinastyIndex].addEventListener('click', function() {
-        for(let i = 0; i < dinasties.length; i++) {
-            dinastiesChevron[i].style.display = 'none';
-            dinasties[i].style.fontWeight = 'normal';
-        }
-        dinastiesChevron[dinastyIndex].style.display = 'block';
-        dinasties[dinastyIndex].style.fontWeight = 'bold';
-        
-    });
-}
-
 
 // Function to remove categories
 function removeCategories() {
@@ -64,14 +42,11 @@ function removeCategories() {
     while (container.hasChildNodes()) {
         container.removeChild(container.lastChild)
     }
-
     // Remove category active style
     for(let i = 0; i < dinasties.length; i++) {
         dinastiesChevron[i].style.display = 'none';
         dinasties[i].style.fontWeight = 'normal';
     }
-    // Turn off category flag.
-    isCategory = 0;
     // Back to top.
     topFunction();
     // Remove all filters

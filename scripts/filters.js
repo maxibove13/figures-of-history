@@ -1,17 +1,44 @@
 // container for the emperor page
 const container = document.querySelector(".figures")
+// template
 const emperorPageTemplate = document.getElementById("emperor-page-template");
-
+// Displayed items per load.
 const nItemsPerPage = 5;
 
+// Gather all numerical filters ID in an array.
+const filtersIDArray = ['fromReigningYears','toReigningYears','fromAgeWhenEmperor','toAgeWhenEmperor','fromYearSpan','toYearSpan'];
+// Gather all causeOfDeath checkboxes.
+const checkboxesDeathCauses = Array.from(document.getElementsByClassName("cause-of-death-input"));
+
+// Add event listener to all filters.
+// Numerical filters.
+for(let i = 0; i < filtersIDArray.length; i++) {
+    document.getElementById(filtersIDArray[i]).addEventListener('click', function() {
+        filters(1500,dinastyIndex);
+    })
+}
+// Checkboxes filters.
+for(let i = 0; i < checkboxesDeathCauses.length; i++) {
+    checkboxesDeathCauses[i].addEventListener('click', function() {
+        filters(1500,dinastyIndex);
+    })
+}
+
+
+// Gather the node list with all categories.
+const dinasties = document.querySelectorAll('.categories a');
+// For all the categories add an eventListener.
+for (let i = 0; i < dinasties.length; i++) {
+    dinasties[i].addEventListener('click', function() {
+        filters(0,i);
+        dinastyIndex = i;
+    });
+}
 
 // Read URL parameters
 function readURLParams() {
     // Define the const to get the queryStrings.
     const queryStrings = new URLSearchParams(location.search);
-    // Gather all numerical filters ID in an array.
-    filtersIDArray = ['fromReigningYears','toReigningYears','fromAgeWhenEmperor','toAgeWhenEmperor',
-                        'fromYearSpan','toYearSpan'];
     // loop through all numerical filters.
     for (let i = 0; i < filtersIDArray.length; i++) {
         // If the query string has that ID.
@@ -21,8 +48,7 @@ function readURLParams() {
         }
     }
 
-    // Gather all causeOfDeath checkboxes.
-    const checkboxesDeathCauses = Array.from(document.getElementsByClassName("cause-of-death-input"));
+
     // loop through them.
     for (let i = 0; i < checkboxesDeathCauses.length; i++) {
         // if queryString has it:
@@ -40,43 +66,36 @@ function showAllImperators() {
         while (container.hasChildNodes()) {
             container.removeChild(container.lastChild)
         }
-        // Category off
-        isCategory = 0;
-        isFilter = 0;
         filteredArray = emperors;
         fillData(filteredArray);
 }
 
 
 
-
-function filters(tInit) {
-    // If onload, 
-    // turn on filters flag.
-    isFilter = 1;
+function filters(tInit,dinastyIndex) {
     // Clear time variable on queue.
     if (typeof timeVar !== "undefined") {
         clearTimeout(timeVar)
     }
     timeVar = setTimeout(function(){
-        // clean the container.
-        while (container.hasChildNodes()) {
-            container.removeChild(container.lastChild)
-        }
-        if (isCategory) {
-            // If a category is selected initialize filteredArray as the category array.
-            window.filteredArray = dinastyArray
-        }   else {//
-            // Initialize filteredArray as the full emperor list.
-            window.filteredArray = emperors;
-        }
-
+        // Save previous filteredArray.
+        filteredArrayOld = filteredArray;
+        // Reinitialize filteredArray as the complete emperor list.
+        filteredArray = emperors;
+        // Call dynasties (Categories) function.
+        selectCategory(dinastyIndex);
         // Call all filters functions.
         howLong('fromReigningYears','toReigningYears');
         ageWhenEmp('fromAgeWhenEmperor','toAgeWhenEmperor');
         causeofDeath();
         inWhatYearsDidHeReign('fromYearSpan','toYearSpan');
-
+        if (filteredArrayOld == filteredArray) {
+            return;
+        }
+        // clean the container.
+        while (container.hasChildNodes()) {
+            container.removeChild(container.lastChild)
+        }
         // call function to clone template and fill data given filtered array.
         fillData(filteredArray);
         // If the page hasn't any content display a message
@@ -262,24 +281,16 @@ if (container.children.length > 10) {
     }
 } 
 
-// Listen when scroll to near botton
+// Listen when scroll is near botton
 window.addEventListener('scroll', function() {
     const docHTML = document.documentElement;
     // Define the "scroll to near botton"
     if ((docHTML.scrollTop+docHTML.clientHeight)/docHTML.offsetHeight >= 0.85) {
-        // If a category is selected pass on the category array.
-        if (isCategory && isFilter == 0) {
-            // If all Items are already displayed do nothing.
-            if (container.children.length == dinastyArray.length) {
-                // Else add more items
-            }   else {
-                fillData(dinastyArray)    
-            }
+        // If all Items are already displayed do nothing.
+        if (container.children.length == filteredArray.length) {
         }   else {
-            if (container.children.length == filteredArray.length) {
-            }   else {
-                fillData(filteredArray);
-            }
+            // Otherwise fill the container with the remaining items.
+            fillData(filteredArray);
         }
     }
 });

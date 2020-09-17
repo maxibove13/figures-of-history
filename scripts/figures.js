@@ -1,5 +1,24 @@
 // General script to manage different events from figure.html
+// Initialize dinastyIndex as -1 to prevent from selecting a category automatically.
+let dinastyIndex = -1;
+// Initialize filteredArray as the full emperor list.
+let filteredArray = emperors;
 
+// functions to call onload:
+
+// Remove previous filters or categories.
+window.addEventListener('load', removeFilters);
+// Go to the top of the page.
+window.addEventListener('load', topFunction);
+// Read URL parameters (string queries).
+window.addEventListener('load', readURLParams);
+// apply any activated filters.
+window.addEventListener('load', function() {
+    filters(0,dinastyIndex);
+});
+
+// Deactivate sidebars if resizing.
+window.addEventListener('resize', correctSidebars);
 
 //Get this year//
 const today = new Date();
