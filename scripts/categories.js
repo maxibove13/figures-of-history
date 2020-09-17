@@ -80,6 +80,7 @@ function removeCategories() {
     showAllImperators();
 }
 
+
 // Category and filter sidebars behaviours.
 // Define .categories and .filters class
 const sidebarCategories = document.querySelector('.categories');

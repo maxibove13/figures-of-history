@@ -4,6 +4,36 @@ const emperorPageTemplate = document.getElementById("emperor-page-template");
 
 const nItemsPerPage = 5;
 
+
+// Read URL parameters
+function readURLParams() {
+    // Define the const to get the queryStrings.
+    const queryStrings = new URLSearchParams(location.search);
+    // Gather all numerical filters ID in an array.
+    filtersIDArray = ['fromReigningYears','toReigningYears','fromAgeWhenEmperor','toAgeWhenEmperor',
+                        'fromYearSpan','toYearSpan'];
+    // loop through all numerical filters.
+    for (let i = 0; i < filtersIDArray.length; i++) {
+        // If the query string has that ID.
+        if (queryStrings.has(filtersIDArray[i])) {
+            // Assign the value.
+            document.getElementById(filtersIDArray[i]).value = queryStrings.get(filtersIDArray[i]);
+        }
+    }
+
+    // Gather all causeOfDeath checkboxes.
+    const checkboxesDeathCauses = Array.from(document.getElementsByClassName("cause-of-death-input"));
+    // loop through them.
+    for (let i = 0; i < checkboxesDeathCauses.length; i++) {
+        // if queryString has it:
+        if (queryStrings.has('causeOfDeath' + i)) {
+            // Check it.
+            document.getElementById('causeOfDeath' + i).checked = queryStrings.get('causeOfDeath' + i) == 1;
+        }
+    }
+}
+
+
 // get the emperor page with all emperors //
 function showAllImperators() {
         // clean the container.
@@ -19,7 +49,9 @@ function showAllImperators() {
 
 
 
-function filters() {
+
+function filters(tInit) {
+    // If onload, 
     // turn on filters flag.
     isFilter = 1;
     // Clear time variable on queue.
@@ -34,7 +66,7 @@ function filters() {
         if (isCategory) {
             // If a category is selected initialize filteredArray as the category array.
             window.filteredArray = dinastyArray
-        }   else {
+        }   else {//
             // Initialize filteredArray as the full emperor list.
             window.filteredArray = emperors;
         }
@@ -53,7 +85,7 @@ function filters() {
             container.appendChild(itemClone);
         }
         topFunction()
-    },2000)
+    },tInit)
 }
 
 

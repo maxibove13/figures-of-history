@@ -38,7 +38,7 @@
 
     <title>Imperium Romanum</title>
   </head>
-  <body onload="showAllImperators(),removeFilters(),topFunction()" onresize="correctSidebars()">
+  <body onload="removeFilters(),topFunction(),readURLParams(),filters(0)" onresize="correctSidebars()">
 
 
     <header class="header">
@@ -101,46 +101,46 @@
         <div class="howlong">
           <h4>How long did he last?</h4>
           <div class="input-content-from-to">
-            <input type="number" id="fromReigningYears"  placeholder="From" onkeyup="filters()" onclick="filters()" >
+            <input type="number" id="fromReigningYears"  placeholder="From" onkeyup="filters(2000)" onclick="filters(2000)" >
             <p> - </p>
-            <input type="number" id="toReigningYears" min='0' max='50' placeholder="To" onkeyup="filters()" onclick="filters()">
+            <input type="number" id="toReigningYears" min='0' max='50' placeholder="To" onkeyup="filters(2000)" onclick="filters(2000)">
             <p>years</p>
           </div>
         </div>
         <div class="age-when-emp">
           <h4>What age did he was when made Emperor?</h4>
           <div class="input-content-from-to">
-            <input type="number" id="fromAgeWhenEmperor" min='0' max='100' placeholder="From" onkeyup="filters()" onclick="filters()">
+            <input type="number" id="fromAgeWhenEmperor" min='0' max='100' placeholder="From" onkeyup="filters(2000)" onclick="filters(2000)">
             <p> - </p>
-            <input type="number" id="toAgeWhenEmperor" min='0' max='100' placeholder="To" onkeyup="filters()" onclick="filters()">
+            <input type="number" id="toAgeWhenEmperor" min='0' max='100' placeholder="To" onkeyup="filters(2000)" onclick="filters(2000)">
             <p>years old</p>
           </div>
         </div>
         <div class="year-span">
           <h4>In what years did he Reign?</h4>
           <div class="input-content-from-to">
-            <input type="number" id="fromYearSpan" min='-27' max='476' placeholder="From" onkeyup="filters()" onclick="filters()">
+            <input type="number" id="fromYearSpan" min='-27' max='476' placeholder="From" onkeyup="filters(2000)" onclick="filters(2000)">
             <p> - </p>
-            <input type="number" id="toYearSpan" min='-27' max='476' placeholder="To" onkeyup="filters()" onclick="filters()">
+            <input type="number" id="toYearSpan" min='-27' max='476' placeholder="To" onkeyup="filters(2000)" onclick="filters(2000)">
             <p>A.D</p>
           </div>
         </div>
         <div class="cause-of-death">
           <h4>How did he died?</h4>
-          <input type="checkbox" id="causeOfDeath1" class="cause-of-death-input" name="causeOfDeath1" onclick="filters()" value="natural">
+          <input type="checkbox" id="causeOfDeath0" class="cause-of-death-input" name="causeOfDeath1" onclick="filters(2000)" value="natural">
           <label for="causeOfDeath1"> Natural causes</label><br>
-          <input type="checkbox" id="causeOfDeath2" class="cause-of-death-input" name="causeOfDeath2" onclick="filters()" value="poisoned">
+          <input type="checkbox" id="causeOfDeath1" class="cause-of-death-input" name="causeOfDeath2" onclick="filters(2000)" value="poisoned">
           <label for="causeOfDeath2"> Poisoned</label><br>
-          <input type="checkbox" id="causeOfDeath3" class="cause-of-death-input" name="causeOfDeath3" onclick="filters()" value="byTheSword">
+          <input type="checkbox" id="causeOfDeath2" class="cause-of-death-input" name="causeOfDeath3" onclick="filters(2000)" value="byTheSword">
           <label for="causeOfDeath3"> By the sword</label><br>
-          <input type="checkbox" id="causeOfDeath4" class="cause-of-death-input" name="causeOfDeath4" onclick="filters()" value="inBattle">
+          <input type="checkbox" id="causeOfDeath3" class="cause-of-death-input" name="causeOfDeath4" onclick="filters(2000)" value="inBattle">
           <label for="causeOfDeath4"> In battle</label><br>
-          <input type="checkbox" id="causeOfDeath5" class="cause-of-death-input" name="causeOfDeath5" onclick="filters()" value="chokedPillow">
-          <label for="causeOfDeath4"> Choked by a pillow</label><br>
-          <input type="checkbox" id="causeOfDeath6" class="cause-of-death-input" name="causeOfDeath6" onclick="filters()" value="suicide">
-          <label for="causeOfDeath4"> Suicide</label><br>
-          <input type="checkbox" id="causeOfDeath7" class="cause-of-death-input" name="causeOfDeath7" onclick="filters()" value="unknown">
-          <label for="causeOfDeath4"> Unknown</label><br>
+          <input type="checkbox" id="causeOfDeath4" class="cause-of-death-input" name="causeOfDeath5" onclick="filters(2000)" value="chokedPillow">
+          <label for="causeOfDeath5"> Choked by a pillow</label><br>
+          <input type="checkbox" id="causeOfDeath5" class="cause-of-death-input" name="causeOfDeath6" onclick="filters(2000)" value="suicide">
+          <label for="causeOfDeath6"> Suicide</label><br>
+          <input type="checkbox" id="causeOfDeath6" class="cause-of-death-input" name="causeOfDeath7" onclick="filters(2000)" value="unknown">
+          <label for="causeOfDeath7"> Unknown</label><br>
         </div>
       </div>
       <button onclick="removeFilters()">
