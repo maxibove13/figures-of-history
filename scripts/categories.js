@@ -19,15 +19,6 @@ function selectCategory(dinastyIndex) {
         dinastiesChevron[i].style.display = 'none';
         dinasties[i].style.fontWeight = 'normal';
     }
-    // Prevents from reloading unpurposely if category already selected.
-    // if (dinastyArray.length == document.querySelectorAll('.emperor-title-name').length) {
-    //     for (let i = 0; i <= dinastyArray.length; i++) {
-    //         if (dinastyArray[i].emperorName !== document.querySelectorAll('.emperor-title-name')[i].innerHTML) {
-    //             break;
-    //         }
-    //         return;
-    //     }
-    // }
     // Style the selected dinasty.
     // Show chevron-right icon when clicking category.
     dinastiesChevron[dinastyIndex].style.display = 'block';

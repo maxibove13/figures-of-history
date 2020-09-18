@@ -268,11 +268,10 @@ function fillData(filteredArray) {
         // get emperor data from array and write it inside the template //
         itemClone.querySelector('.emperor-title-name').innerText = filteredArrayToShow[i].emperorName;
         itemClone.querySelector('.emperor-range').innerText = filteredArrayToShow[i].emperorFrom + '-' + filteredArrayToShow[i].emperorUntil;
-        itemClone.querySelector('.main-img').src = filteredArrayToShow[i].emperorImages[1];
-        itemClone.querySelector('.main-img').alt = filteredArrayToShow[i].emperorName;
-        itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArrayToShow[i].originCity + ', ' + filteredArrayToShow[i].originProvince;
-        itemClone.querySelector('.ageWhenEmperor').innerText = 'Age when emperor: ' + Math.abs(Math.abs(filteredArrayToShow[i].emperorFrom) - Math.abs(filteredArrayToShow[i].Born));
-        itemClone.querySelector('.description').innerText = filteredArrayToShow[i].emperorDescription;
+        itemClone.querySelector('.main-image').style.backgroundImage = 'url(' + filteredArrayToShow[i].emperorImages[1] + ')';
+        // itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArrayToShow[i].originCity + ', ' + filteredArrayToShow[i].originProvince;
+        // itemClone.querySelector('.ageWhenEmperor').innerText = 'Age when emperor: ' + Math.abs(Math.abs(filteredArrayToShow[i].emperorFrom) - Math.abs(filteredArrayToShow[i].Born));
+        //itemClone.querySelector('.description').innerText = filteredArrayToShow[i].emperorDescription;
         itemClone.querySelector('.emperor-page-images').src = filteredArrayToShow[i].emperorImages[2];
         itemClone.querySelector('.emperor-page-images').alt = filteredArrayToShow[i].emperorImages[2];
         itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(filteredArrayToShow[i].emperorUntil) - filteredArrayToShow[i].emperorFrom) + ' years'
