@@ -33,6 +33,11 @@ li {
     list-style-type: none;
 }
 
+h1,h2 {
+    text-align: center;
+    color: white;
+}
+
 h3 {
    color: white;
 }

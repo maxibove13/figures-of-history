@@ -63,6 +63,7 @@ header a {
     display: block;
     font-weight: normal;
     padding: .50rem 1rem 0.74rem 1rem;
+    height: inherit;
     transition-property: all;
     transition-duration: 0.165s;
     transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);

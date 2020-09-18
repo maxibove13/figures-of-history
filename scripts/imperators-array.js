@@ -65,9 +65,9 @@ let emperors = [
     },
     {
         emperorName: "Nero",
-        emperorFrom: 68,
-        emperorUntil: 69,
-        Born: -3,
+        emperorFrom: 54,
+        emperorUntil: 68,
+        Born: 37,
         originCity: "Terracina",
         originProvince: "Italy",
         causeOfDeath: "suicide",

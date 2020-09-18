@@ -161,23 +161,25 @@
         <ul class="dinasties">
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Julio-Claudia (27 B.C - 68 A.D)</a></li>
+            <li><a>Julio-Claudia (27 B.C - 68 A.D)</a></li>
           </div>
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Year of 4 Emperors (68 - 69)</a></li>
+            <li><a>Year of 4 Emperors (68 - 69)</a></li>
           </div>
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Flavia (69 - 96)</a></li>
+            <li><a>Flavia (69 - 96)</a></li>
           </div>
           <div class="dinasty-container ">
             <i class="fas fa-chevron-right"></i>
-            <li><a href="#" >Nerva-Antonina (96 - 192)</a></li>
+            <li><a>Nerva-Antonina (96 - 192)</a></li>
           </div>
-          <button onclick="removeCategories()">
-            Show all Emperors
-          </button>
+          <div class="remove-categories">
+            <button id='remove-categories-button' onclick="removeCategories()">
+              Show all Dinasties
+            </button>
+        </div>
         </ul>
     </div>
     </section>
@@ -309,7 +311,8 @@
 
     <!-- Message, emperor not found -->
     <template id="emperorNotFound">
-      <h1>The emperor with all those characteristic did not exist. Allegedly...</h1>
+      <h1 class='notFoundText'>The emperor with all those characteristic did not exist. Allegedly...</h1>
+      <h2 class='notFoundText'>History is no more than a set of stories we tell ourselves backed by a little of 'evidence', anything could have happened.</h2>
     </template>
 
 

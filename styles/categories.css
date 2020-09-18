@@ -26,6 +26,7 @@
     transition-property: all;
     transition-duration: 0.165s;
     transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
+    cursor: pointer;
 }
 
 /*
@@ -47,5 +48,12 @@
 .categories button:hover {
     background: white;
     color: #672947;
+}
+
+.categories .remove-categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 

@@ -38,21 +38,16 @@ function selectCategory(dinastyIndex) {
 
 // Function to remove categories
 function removeCategories() {
-    // clean container.
-    while (container.hasChildNodes()) {
-        container.removeChild(container.lastChild)
-    }
     // Remove category active style
     for(let i = 0; i < dinasties.length; i++) {
         dinastiesChevron[i].style.display = 'none';
         dinasties[i].style.fontWeight = 'normal';
     }
-    // Back to top.
+    // Go back to top.
     topFunction();
-    // Remove all filters
-    removeFilters()
-    // Call function that shows the complete list of emperors.
-    showAllImperators();
+    // Process the filters again without any dinasty selected (dinastyIndex = -1);
+    dinastyIndex = -1;
+    filters(0,dinastyIndex);
 }
 
 
