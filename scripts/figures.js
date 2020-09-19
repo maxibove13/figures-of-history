@@ -17,8 +17,18 @@ window.addEventListener('load', function() {
     filters(0,dinastyIndex);
 });
 
+// Deactivate sidebars if menu opened.
+document.querySelector('.menu-wrap .toggler').addEventListener('click', closeSidebars)
+
 // Deactivate sidebars if resizing.
-window.addEventListener('resize', correctSidebars);
+window.addEventListener('resize', function() {
+    // Make sure the sidebar is deactivated. 
+    sidebarCategories.classList.toggle('sidebar-category', false);
+    buttonCategories.classList.toggle('button-activated', false);
+    sidebarFilters.classList.toggle('sidebar-filter', false);
+    buttonFilters.classList.toggle('button-activated', false);
+    document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', false);
+});
 
 //Get this year//
 const today = new Date();
@@ -80,24 +90,8 @@ function showSidebar(buttonType) {
     }
 
 }
-// Function to deactivate the sidebars when resizing.
-function correctSidebars() {
-    // if width>800 deactivate the categories sidebar.
-    if (window.innerWidth >= 800) {
-        // Make sure the sidebar is deactivated. 
-        sidebarCategories.classList.toggle('sidebar-category', false);
-        buttonCategories.classList.toggle('button-activated', false);
-    }
-    // if width>1500 deactivate the filters sidebar.
-    if (window.innerWidth >= 1500) {
-        // Make sure the sidebar is deactivated. 
-        sidebarFilters.classList.toggle('sidebar-filter', false);
-        buttonFilters.classList.toggle('button-activated', false);
-    }
-}
 
-// Add eventlistener to hamburger menu
-document.querySelector('.menu-wrap .toggler').addEventListener('click', closeSidebars)
+
 
 // Function to close categories and filters.
 function closeSidebars() {
@@ -107,6 +101,7 @@ function closeSidebars() {
         buttonCategories.classList.toggle('button-activated', false);
         sidebarFilters.classList.toggle('sidebar-filter', false);
         buttonFilters.classList.toggle('button-activated', false);
+        document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', false);
     }
 }
 
