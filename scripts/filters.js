@@ -104,9 +104,9 @@ function filters(tInit,dinastyIndex) {
                     if (filteredArray[i] !== filteredArrayOld[i]) {
                         break;
                     }
-                    // If no element is different, get out from filters().
-                    return;
                 }
+                // If no element is different, get out from filters().   
+                return;
             }
         }
 
@@ -268,7 +268,7 @@ function fillData(filteredArray) {
         // get emperor data from array and write it inside the template //
         itemClone.querySelector('.emperor-title-name').innerText = filteredArrayToShow[i].emperorName;
         itemClone.querySelector('.emperor-range').innerText = filteredArrayToShow[i].emperorFrom + '-' + filteredArrayToShow[i].emperorUntil;
-        itemClone.querySelector('.main-image').style.backgroundImage = 'url(' + filteredArrayToShow[i].emperorImages[1] + ')';
+        itemClone.querySelector('.main-image').style.backgroundImage = 'url(' + filteredArrayToShow[i].emperorImages[1] + ')';     
         // itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArrayToShow[i].originCity + ', ' + filteredArrayToShow[i].originProvince;
         // itemClone.querySelector('.ageWhenEmperor').innerText = 'Age when emperor: ' + Math.abs(Math.abs(filteredArrayToShow[i].emperorFrom) - Math.abs(filteredArrayToShow[i].Born));
         //itemClone.querySelector('.description').innerText = filteredArrayToShow[i].emperorDescription;

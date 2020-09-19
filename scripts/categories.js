@@ -42,18 +42,4 @@ function removeCategories() {
 }
 
 
-// Category and filter sidebars behaviours.
-// Define .categories and .filters class
-const sidebarCategories = document.querySelector('.categories');
-const sidebarFilters = document.querySelector('.filters');
-// Define button-filter and button-categories IDs.
-const buttonCategories = document.getElementById('button-categories');
-const buttonFilters = document.getElementById('button-filters')
-// Make the buttons listen to click event.
-buttonCategories.addEventListener('click', function() {
-    showSidebar(buttonCategories);
-});
-buttonFilters.addEventListener('click', function() {
-    showSidebar(buttonFilters);
-});
 

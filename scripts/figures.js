@@ -35,9 +35,21 @@ function offOverlay() {
     document.getElementById('watch-out-overlay').style.display='none';
 }
 
-
+// Category and filter sidebars behaviours.
+const sidebarCategories = document.querySelector('.categories');
+const sidebarFilters = document.querySelector('.filters');
+const buttonCategories = document.getElementById('button-categories');
+const buttonFilters = document.getElementById('button-filters')
+// Make the buttons listen to click event.
+buttonCategories.addEventListener('click', function() {
+    showSidebar(buttonCategories);
+});
+buttonFilters.addEventListener('click', function() {
+    showSidebar(buttonFilters);
+});
 // Manage filters and categories sidebar behaviour. (both cannot be activated at the same time)
 function showSidebar(buttonType) {
+    
     // if categories is clicked, activate it.
     if (buttonType == buttonCategories) {
         // if filter sidebar is activated.
@@ -61,6 +73,12 @@ function showSidebar(buttonType) {
         sidebarFilters.classList.toggle('sidebar-filter');
         buttonFilters.classList.toggle('button-activated');
     }
+    if (buttonFilters.classList.contains('button-activated') || buttonCategories.classList.contains('button-activated')) {
+        document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', true);
+    }   else {
+        document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', false);
+    }
+
 }
 // Function to deactivate the sidebars when resizing.
 function correctSidebars() {
@@ -80,6 +98,7 @@ function correctSidebars() {
 
 // Add eventlistener to hamburger menu
 document.querySelector('.menu-wrap .toggler').addEventListener('click', closeSidebars)
+
 // Function to close categories and filters.
 function closeSidebars() {
     if (document.querySelector('.menu-wrap .toggler').checked) {
@@ -109,3 +128,4 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+

@@ -43,7 +43,7 @@
     height: inherit;
     justify-content: center;
     font-size: 1.1rem;
-    margin-right: 5px;
+    margin-right: 49px;
 }
 
 .login-register a {
@@ -111,7 +111,7 @@ header a {
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
     /* Remove the nav bar in header */
     .main-menu a, .login-register a {
         display: none;
@@ -121,12 +121,12 @@ header a {
         display: block;
     }
     .logo {
-        margin-left: 170px;
+        margin-left: 0;
     }
 }
 
-@media (min-width: 800px) {
+/* @media (min-width: 1100px) {
     .ghost-icon {
         display: none;
     }
-}
+} */
