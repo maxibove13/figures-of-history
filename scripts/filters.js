@@ -125,6 +125,8 @@ function filters(tInit,dinastyIndex) {
         topFunction()
         // Update the URL query strings with the actual filters.
         updateURL(dinastyIndex)
+        // Call function to add event listener to more information button in mobile and tablet version.
+        enableMoreInformation();
     },tInit)
 }
 
@@ -275,7 +277,6 @@ function fillData(filteredArray) {
         itemClone.querySelector('.emperor-page-images').src = filteredArrayToShow[i].emperorImages[2];
         itemClone.querySelector('.emperor-page-images').alt = filteredArrayToShow[i].emperorImages[2];
         itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(filteredArrayToShow[i].emperorUntil) - filteredArrayToShow[i].emperorFrom) + ' years'
-
         // Define the dots position
         beg = filteredArrayToShow[i].emperorFrom;
         end = filteredArrayToShow[i].emperorUntil;
@@ -286,7 +287,7 @@ function fillData(filteredArray) {
         itemClone.querySelector(".beg-container").style.left = relativeBeg + '%';
         itemClone.querySelector(".end-container").style.left = relativeEnd + '%';
         // append the template item in the home card container //
-        container.appendChild(itemClone)
+        container.appendChild(itemClone)   
     }
 }
 

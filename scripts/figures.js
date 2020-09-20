@@ -20,7 +20,7 @@ window.addEventListener('load', function() {
 // Deactivate sidebars if menu opened.
 document.querySelector('.menu-wrap .toggler').addEventListener('click', closeSidebars)
 
-// Deactivate sidebars if resizing.
+// Deactivate sidebars if resizing. And deactivate more information text.
 window.addEventListener('resize', function() {
     // Make sure the sidebar is deactivated. 
     sidebarCategories.classList.toggle('sidebar-category', false);
@@ -45,11 +45,11 @@ function offOverlay() {
     document.getElementById('watch-out-overlay').style.display='none';
 }
 
-// Category and filter sidebars behaviours.
+// Define some buttons and sidebars.
 const sidebarCategories = document.querySelector('.categories');
 const sidebarFilters = document.querySelector('.filters');
 const buttonCategories = document.getElementById('button-categories');
-const buttonFilters = document.getElementById('button-filters')
+const buttonFilters = document.getElementById('button-filters');
 // Make the buttons listen to click event.
 buttonCategories.addEventListener('click', function() {
     showSidebar(buttonCategories);
@@ -57,6 +57,8 @@ buttonCategories.addEventListener('click', function() {
 buttonFilters.addEventListener('click', function() {
     showSidebar(buttonFilters);
 });
+
+
 // Manage filters and categories sidebar behaviour. (both cannot be activated at the same time)
 function showSidebar(buttonType) {
     
@@ -124,3 +126,45 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
+
+
+// Function that displays more information text in each emperor card when more informatio button is clicked.
+function enableMoreInformation() {
+    for (let i = 0; i < container.children.length; i++) {
+        document.querySelectorAll('.button-moreInformation')[i].addEventListener('click', function() {
+            document.querySelectorAll('.button-moreInformation')[i].classList.toggle('button-activated');
+            if (document.querySelectorAll('.right-column-emperor')[i].style.display == 'block') {
+                document.querySelectorAll('.right-column-emperor')[i].style.display = 'none';
+       
+            }   else {
+                document.querySelectorAll('.right-column-emperor')[i].style.display = 'block';
+                document.querySelectorAll('.more-images')[i].style.display = 'none';
+                document.querySelectorAll('.emperor-content')[i].style.flexDirection = 'column';
+                document.querySelectorAll('.right-column-emperor')[i].style.width = '100%';
+            }
+        });
+    }
+
+};
+
+window.addEventListener('resize', function() {
+    // Deactivate more information button and displayed text.
+    for (let i = 0; i < container.children.length; i++) {
+        if (window.innerWidth > 800) {
+            document.querySelectorAll('.right-column-emperor').style.display = 'flex';
+            document.querySelectorAll('.more-images')[i].style.display = 'block';
+            document.querySelectorAll('.emperor-content')[i].style.flexDirection = 'row';
+            document.querySelectorAll('.right-column-emperor')[i].style.width = '50%';
+        }   else {
+            document.querySelectorAll('.right-column-emperor')[i].style.display = 'none';
+        }
+        document.querySelectorAll('.button-moreInformation')[i].classList.toggle('button-activated', false);
+    }
+});
+
+
+// Ugly solution to activate enableMoreInformation() when loading more emperors.
+window.addEventListener('click', function() {
+    enableMoreInformation();
+    console.log('I am scrolling');
+});

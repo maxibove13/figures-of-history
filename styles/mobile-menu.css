@@ -130,3 +130,10 @@
         padding-top: 100px;
     }
 }
+
+@media (max-width: 400px) {
+    .menu-wrap .mobile-menu > div {
+        width: 305vw;
+        height: 305vw;
+    }
+}

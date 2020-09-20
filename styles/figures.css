@@ -36,6 +36,15 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+.main-image button {
+    height: 36.4px;
+    display: none;
+    background-color: rgba(44,0,30, 0.5);
 }
 
 /* Emperors cards */
@@ -139,8 +148,8 @@ main {
 
 .scrollttb-container {
     position: fixed;
-    bottom: 32px;
-    right: 48px;
+    bottom: 1rem;
+    right: 1rem;
     color: white;
     background: rgba(44,0,30, 0.85);
     border-radius: 50%;
@@ -196,14 +205,6 @@ main {
     }
 }
 
-
-@media (max-width: 500px) {
-    /* Remove timeline for small size */
-    .time-line {
-        display: none;
-    }
-}
-
 @media (max-width: 800px) {
     .right-column-emperor {
         display: none;
@@ -214,5 +215,16 @@ main {
    .left-column-emperor {
        width: 100%;
    }
-
+   .main-image button {
+       display: block;
+   }
 }
+
+
+@media (max-width: 500px) {
+    /* Remove timeline for small size */
+    .time-line {
+        display: none;
+    }
+}
+
