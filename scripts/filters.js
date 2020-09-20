@@ -1,38 +1,110 @@
-// container for the emperor page
-const container = document.querySelector(".figures")
-// template
-const emperorPageTemplate = document.getElementById("emperor-page-template");
-// Displayed items per load.
-const nItemsPerPage = 5;
 
-// Gather all numerical filters ID in an array.
-const filtersIDArray = ['fromReigningYears','toReigningYears','fromAgeWhenEmperor','toAgeWhenEmperor','fromYearSpan','toYearSpan'];
-// Gather all causeOfDeath checkboxes.
-const checkboxesDeathCauses = Array.from(document.getElementsByClassName("cause-of-death-input"));
+// Script that manages figure.html events. //
 
-// Add event listener to all filters:
-// Numerical filters.
-for(let i = 0; i < filtersIDArray.length; i++) {
-    document.getElementById(filtersIDArray[i]).addEventListener('click', function() {
-        filters(1500,dinastyIndex);
-    })
-}
-// Checkboxes filters.
-for(let i = 0; i < checkboxesDeathCauses.length; i++) {
-    checkboxesDeathCauses[i].addEventListener('click', function() {
-        filters(1500,dinastyIndex);
-    })
-}
-// Dinasties (categories) filters.
-// Gather the node list with all categories.
-const dinasties = document.querySelectorAll('.categories a');
-// For all the categories add an eventListener.
-for (let i = 0; i < dinasties.length; i++) {
-    dinasties[i].addEventListener('click', function() {
-        filters(0,i);
-        dinastyIndex = i;
+
+// Global scope declarations:
+    // container of the emperors cards.
+    const container = document.querySelector(".figures")
+    // template of the emperor cards.
+    const emperorPageTemplate = document.getElementById("emperor-page-template");
+    // Displayed items per load.
+    const nItemsPerPage = 5;
+    
+    // Gather all numerical filters ID in an array called filtersIDArray.
+    const allNumFilters = document.querySelectorAll('input[type="number"]');
+    let filtersIDArray = [];
+    for (let i = 0; i < allNumFilters.length; i++) {
+        filtersIDArray.push(allNumFilters[i].id)
+    }
+    const checkboxesDeathCauses = Array.from(document.getElementsByClassName("cause-of-death-input"));
+    const sidebarCategories = document.querySelector('.categories');
+    const sidebarFilters = document.querySelector('.filters');
+    const buttonCategories = document.getElementById('button-categories');
+    const buttonFilters = document.getElementById('button-filters');
+    const dinasties = document.querySelectorAll('.categories a');
+    const docHTML = document.documentElement;
+    // Initialize dinastyIndex as -1 to prevent from selecting a category automatically.
+    let dinastyIndex = -1;
+    // Initialize filteredArray as the full emperor list.
+    let filteredArray = emperors;
+    // Stamp this year on footer.
+    const thisYear = new Date().getFullYear();
+    document.getElementById('company').innerHTML = '&copy;' + thisYear + ' logos'
+    // Scroll to top button.
+    const scrollButton = document.querySelector('.scrollttb-container');
+    // right chevron symbol in dinasty selector.
+    const dinastiesChevron = document.querySelectorAll('.categories i');
+
+// Event listeners:
+    // Numerical filters.
+    for(let i = 0; i < filtersIDArray.length; i++) {
+        document.getElementById(filtersIDArray[i]).addEventListener('click', function() {
+            filters(1500,dinastyIndex);
+        })
+    }
+    // Checkboxes filters.
+    for(let i = 0; i < checkboxesDeathCauses.length; i++) {
+        checkboxesDeathCauses[i].addEventListener('click', function() {
+            filters(1500,dinastyIndex);
+        })
+    }
+    // Categories (dinasties) filters.
+    for (let i = 0; i < dinasties.length; i++) {
+        dinasties[i].addEventListener('click', function() {
+            filters(0,i);
+            dinastyIndex = i;
+        });
+    }
+    // Infinite scroll.
+    window.addEventListener('scroll', function() {
+    if ((docHTML.scrollTop+docHTML.clientHeight)/docHTML.offsetHeight >= 0.85 && container.children.length < filteredArray.length) {
+            fillData(filteredArray);
+        }
+    // Deactivate sidebars if mobile menu opened.
+    document.querySelector('.menu-wrap .toggler').addEventListener('click', closeSidebars)
     });
-}
+    // listen on load.
+    window.addEventListener('load', removeFilters);
+    window.addEventListener('load', readURLParams);
+    window.addEventListener('load', function() {
+    window.addEventListener('load', goBackToTop);
+        filters(0,dinastyIndex);
+    });
+    // Remove dinasties.
+    document.getElementById('remove-categories-button').addEventListener('click', removeCategories);
+    // Remove filters.
+    document.querySelector('.filters button').addEventListener('click', removeFilters);
+    // Scroll to top button.
+    scrollButton.addEventListener('click', goBackToTop);
+    // Categories and filters button (medium and small version).
+    buttonCategories.addEventListener('click', function() {
+        showSidebar(buttonCategories);
+    });
+    buttonFilters.addEventListener('click', function() {
+        showSidebar(buttonFilters);
+    });
+    // When resizing deactivate more information button and displayed text in mobile version.
+    window.addEventListener('resize', function() {
+        for (let i = 0; i < container.children.length; i++) {
+            if (window.innerWidth > 800) {
+                document.querySelectorAll('.right-column-emperor')[i].style.display = 'flex';
+                document.querySelectorAll('.more-images')[i].style.display = 'block';
+                document.querySelectorAll('.emperor-content')[i].style.flexDirection = 'row';
+                document.querySelectorAll('.right-column-emperor')[i].style.width = '50%';
+            }   else {
+                document.querySelectorAll('.right-column-emperor')[i].style.display = 'none';
+            }
+            document.querySelectorAll('.button-moreInformation')[i].classList.toggle('button-activated', false);
+        }
+    });
+    // Deactivate sidebars if resizing. (medium and small version).
+    window.addEventListener('resize', function() {
+        sidebarCategories.classList.toggle('sidebar-category', false);
+        buttonCategories.classList.toggle('button-activated', false);
+        sidebarFilters.classList.toggle('sidebar-filter', false);
+        buttonFilters.classList.toggle('button-activated', false);
+        document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', false);
+    });
 
 // Read URL parameters
 function readURLParams() {
@@ -64,76 +136,71 @@ function readURLParams() {
 }
 
 
-// get the emperor page with all emperors //
-function showAllImperators() {
-        // clean the container.
-        while (container.hasChildNodes()) {
-            container.removeChild(container.lastChild)
-        }
-        filteredArray = emperors;
-        fillData(filteredArray);
-}
-
-
-
+// Main filters function.
 function filters(tInit,dinastyIndex) {
-    // Clear time variable on queue.
     if (typeof timeVar !== "undefined") {
-        clearTimeout(timeVar)
+        clearTimeout(timeVar) // Clear time variable on queue.
     }
     timeVar = setTimeout(function(){
-        // Save previous filteredArray.
-        filteredArrayOld = filteredArray;
-        // Reinitialize filteredArray as the complete emperor list.
-        filteredArray = emperors;
-        // Call dynasties (Categories) function.
+        filteredArrayOld = filteredArray; // Save previous filteredArray.
+        filteredArray = emperors; // Reinitialize filteredArray as the complete emperor list.
         selectCategory(dinastyIndex);
-        // Call all filters functions.
         howLong('fromReigningYears','toReigningYears');
         ageWhenEmp('fromAgeWhenEmperor','toAgeWhenEmperor');
         causeofDeath();
         inWhatYearsDidHeReign('fromYearSpan','toYearSpan');
         // Compare the previous filteredArray (filteredArrayOld) with the actual filteredArray.
-        // If they are the same, prevent the filter from displaying data again. (get out from filters()).
-        // Check if they have the same length first.
+        // If they are the same, prevent the filter from displaying data again.
         if (container.children.length !== 0) {
             if (filteredArrayOld.length == filteredArray.length) {
-                // Compare each element.
                 for (let i = 0; i < filteredArray.length; i++) {
-                    // If some element is different break the loop.
                     if (filteredArray[i] !== filteredArrayOld[i]) {
                         break;
                     }
                 }
-                // If no element is different, get out from filters().   
                 return;
             }
         }
-
-        // clean the container.
         while (container.hasChildNodes()) {
-            container.removeChild(container.lastChild)
+            container.removeChild(container.lastChild); // clean the container.
         }
-        // call function to clone template and fill data given filtered array.
         fillData(filteredArray);
-        // If the page hasn't any content display a message
         if (container.hasChildNodes() == 0) {
             const itemClone = document.getElementById("emperorNotFound").content.cloneNode(true);
             container.appendChild(itemClone);
         }
-        // Go back to the top of the page.
-        topFunction()
-        // Update the URL query strings with the actual filters.
-        updateURL(dinastyIndex)
-        // Call function to add event listener to more information button in mobile and tablet version.
+        goBackToTop();
+        updateURL(dinastyIndex);
         enableMoreInformation();
     },tInit)
 }
 
+function selectCategory(dinastyIndex) {
+    // Given the selected category slice the emperors array to that certain dinasty.
+    if (dinastyIndex == 0) {
+        dinastyArray = emperors.slice(0,5);
+    }   else if (dinastyIndex == 1) {
+        dinastyArray = emperors.slice(5,9);
+    }   else if (dinastyIndex == 2) {
+        dinastyArray = emperors.slice(8,11);
+    }   else if (dinastyIndex == 3) {
+        dinastyArray = emperors.slice(11,18);
+        // if dinastyArray = -1 no category is selected.
+    }   else {
+        return;
+    }
+    // Style the dinasties selector.
+    for(let i = 0; i < dinasties.length; i++) {
+        dinastiesChevron[i].style.display = 'none';
+        dinasties[i].style.fontWeight = 'normal';
+    }
+    dinastiesChevron[dinastyIndex].style.display = 'block';
+    dinasties[dinastyIndex].style.fontWeight = 'bold';
+    filteredArray = dinastyArray;
+}
 
 // Filter - How long did he last?
 function howLong(input1,input2) {
-    // assigns user inputs.
     let minInput = document.getElementById(input1).value;
     let maxInput = document.getElementById(input2).value;
     // If minInput > maxInput, revert them.
@@ -158,9 +225,6 @@ function howLong(input1,input2) {
         return (reignYears >= minInput && reignYears <= maxInput);
      } );
 }
-
-
-
 
 // Filter - How many years when made Emperor?
 function ageWhenEmp(input1,input2) {
@@ -191,13 +255,11 @@ function ageWhenEmp(input1,input2) {
 
 // Filter - How did he died?
 function causeofDeath() {
-    // get HTMLCollection with all of these checkboxes inputs
-    const checkboxesDeath = document.getElementsByClassName("cause-of-death-input");
     let checkedBoxesDeath = [];
     // Get a boolean array of checked checkboxes
-    for (let i = 0; i < checkboxesDeath.length; i++) {
-        if (checkboxesDeath[i].checked) {
-            checkedBoxesDeath.push(checkboxesDeath[i].value)
+    for (let i = 0; i < checkboxesDeathCauses.length; i++) {
+        if (checkboxesDeathCauses[i].checked) {
+            checkedBoxesDeath.push(checkboxesDeathCauses[i].value)
         }
     }
     if (checkedBoxesDeath.length == 0) {
@@ -221,7 +283,7 @@ function inWhatYearsDidHeReign(input1,input2) {
         minInput = minI;
         maxInput = maxI;
     }
-    // If user leaves blank space, assigns values from beg to end of roman empire
+    // If user leaves blank space, assigns values from beg to end of western roman empire.
     if (minInput == "" && maxInput == "") {
         minInput = -27;
         maxInput = 476; //to end of Western Roman Empire.
@@ -236,7 +298,120 @@ function inWhatYearsDidHeReign(input1,input2) {
     } );
 }
 
-// Function to remove all filters.
+// Function to fill the emperor card given a filteredArray
+function fillData(filteredArray) {
+    if (filteredArray.length > nItemsPerPage) {
+        infiniteScroll(filteredArray);
+    }   else {
+        filteredArrayToShow = filteredArray;
+    }
+    for (let i = 0; i < filteredArrayToShow.length; i++) {
+        const itemClone = emperorPageTemplate.content.cloneNode(true)
+        // get emperor data from array and write it inside the template.
+        itemClone.querySelector('.emperor-title-name').innerText = filteredArrayToShow[i].emperorName;
+        itemClone.querySelector('.emperor-range').innerText = filteredArrayToShow[i].emperorFrom + '-' + filteredArrayToShow[i].emperorUntil;
+        itemClone.querySelector('.main-image').style.backgroundImage = 'url(' + filteredArrayToShow[i].emperorImages[1] + ')';     
+        itemClone.querySelector('.emperor-page-images').src = filteredArrayToShow[i].emperorImages[2];
+        itemClone.querySelector('.emperor-page-images').alt = filteredArrayToShow[i].emperorImages[2];
+        itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(filteredArrayToShow[i].emperorUntil) - filteredArrayToShow[i].emperorFrom) + ' years'
+        // Define the timeline position
+        beg = filteredArrayToShow[i].emperorFrom;
+        end = filteredArrayToShow[i].emperorUntil;
+        relativeBeg = Math.abs(((-27)-beg)/(476+27)*100)
+        relativeEnd = Math.abs(((-27)-end)/(476+27)*100)
+
+        // Position the chevron icons that marks the emperor years
+        itemClone.querySelector(".beg-container").style.left = relativeBeg + '%';
+        itemClone.querySelector(".end-container").style.left = relativeEnd + '%';
+
+        container.appendChild(itemClone)   
+    }
+}
+
+function infiniteScroll(filteredArray) {
+    nItemsDisplayed = container.children.length;
+    // Less than nItemsPerPage remaining to display.
+    if (container.children.length+nItemsPerPage >= filteredArray.length) {
+        filteredArrayToShow = filteredArray.slice(container.children.length,filteredArray.length);
+        // Nothing displayed yet.
+    }   else if (container.children.length == 0) {
+        filteredArrayToShow = filteredArray.slice(0,nItemsPerPage);
+        // More than nItemsPerPage remaining to display.
+    }   else {
+        filteredArrayToShow = filteredArray.slice(container.children.length,container.children.length+nItemsPerPage);
+    }
+}
+
+function goBackToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+function updateURL(dinastyIndex) {
+    let filtersQueryString = [];
+    // Define the dinasty string query
+    if (dinastyIndex !== -1) {
+        filtersQueryString.push('dinasty' + '=' + dinastyIndex);
+    }
+    // loop through all numerical filters and define its query string if activated.
+    for (let i = 0; i < filtersIDArray.length; i++) {
+        if (document.getElementById(filtersIDArray[i]).value !== '') {
+            numFilterString = filtersIDArray[i] + '=' + document.getElementById(filtersIDArray[i]).value
+            filtersQueryString.push(numFilterString);
+        }
+    }
+    // Loop through checkboxes cause of deaths.
+    for (let i = 0; i < checkboxesDeathCauses.length; i++) {
+        if (checkboxesDeathCauses[i].checked) { // Add it only if it is checked.
+            // Define the query string syntax 'causeOfDeath=1' (1=true)
+            checkboxFilterString = 'causeOfDeath' + i + '=' + 1;
+            filtersQueryString.push(checkboxFilterString);
+        } 
+    }
+    queryStringToAdd = '?'; // Define Query String to add in URL
+    // Concatenate all the query strings to add:
+    for (let i = 0; i < filtersQueryString.length; i++) {
+        queryStringToAdd = queryStringToAdd.concat(filtersQueryString[i]);
+        if (i < filtersQueryString.length-1) {
+           queryStringToAdd = queryStringToAdd.concat('&');
+        }
+    }
+    // Update URL
+    window.history.replaceState('null','',queryStringToAdd)
+}
+
+// Function that displays description text in mobile version when clicking on 'more information'.
+function enableMoreInformation() {
+    for (let i = 0; i < container.children.length; i++) {
+        document.querySelectorAll('.button-moreInformation')[i].addEventListener('click', function() {
+            document.querySelectorAll('.button-moreInformation')[i].classList.toggle('button-activated');
+            if (document.querySelectorAll('.right-column-emperor')[i].style.display == 'block') {
+                document.querySelectorAll('.right-column-emperor')[i].style.display = 'none';
+       
+            }   else {
+                document.querySelectorAll('.right-column-emperor')[i].style.display = 'block';
+                document.querySelectorAll('.more-images')[i].style.display = 'none';
+                document.querySelectorAll('.emperor-content')[i].style.flexDirection = 'column';
+                document.querySelectorAll('.right-column-emperor')[i].style.width = '100%';
+            }
+        });
+    }
+
+};
+
+function removeCategories() {
+    // Remove category active style
+    for(let i = 0; i < dinasties.length; i++) {
+        dinastiesChevron[i].style.display = 'none';
+        dinasties[i].style.fontWeight = 'normal';
+    }
+    // Go back to top.
+    goBackToTop();
+    // Process the filters again without any dinasty selected (dinastyIndex = -1);
+    dinastyIndex = -1;
+    filters(0,dinastyIndex);
+}
+
 function removeFilters() {
     // Unmark all checkboxes
     const checkboxesDeath = document.getElementsByClassName("cause-of-death-input");
@@ -252,118 +427,60 @@ function removeFilters() {
     filters(0,dinastyIndex);
 }
 
-
-// Function to fill the emperor card given a filteredArray
-function fillData(filteredArray) {
-    // if array has more than 10 items
-    if (filteredArray.length > nItemsPerPage) {
-        infiniteScroll(filteredArray);
+// Manage filters and categories sidebar behaviour. (both cannot be activated at the same time)
+function showSidebar(buttonType) {
+    if (buttonType == buttonCategories) {
+        if (buttonFilters.classList.contains('button-activated')) {
+            sidebarFilters.classList.toggle('sidebar-filter');
+            buttonFilters.classList.toggle('button-activated');
+        }
+        sidebarCategories.classList.toggle('sidebar-category');
+        buttonCategories.classList.toggle('button-activated');
+    } else {
+        if (buttonCategories.classList.contains('button-activated')) {
+            sidebarCategories.classList.toggle('sidebar-category');
+            buttonCategories.classList.toggle('button-activated');
+        }
+        sidebarFilters.classList.toggle('sidebar-filter');
+        buttonFilters.classList.toggle('button-activated');
+    }
+    if (buttonFilters.classList.contains('button-activated') || buttonCategories.classList.contains('button-activated')) {
+        document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', true);
     }   else {
-        filteredArrayToShow = filteredArray;
-    }
-
-
-    // loop through all filtered elements
-    for (let i = 0; i < filteredArrayToShow.length; i++) {
-        // define item clone from template //
-        const itemClone = emperorPageTemplate.content.cloneNode(true)
-        // get emperor data from array and write it inside the template //
-        itemClone.querySelector('.emperor-title-name').innerText = filteredArrayToShow[i].emperorName;
-        itemClone.querySelector('.emperor-range').innerText = filteredArrayToShow[i].emperorFrom + '-' + filteredArrayToShow[i].emperorUntil;
-        itemClone.querySelector('.main-image').style.backgroundImage = 'url(' + filteredArrayToShow[i].emperorImages[1] + ')';     
-        // itemClone.querySelector('.bornIn').innerText = 'Born in: ' + filteredArrayToShow[i].originCity + ', ' + filteredArrayToShow[i].originProvince;
-        // itemClone.querySelector('.ageWhenEmperor').innerText = 'Age when emperor: ' + Math.abs(Math.abs(filteredArrayToShow[i].emperorFrom) - Math.abs(filteredArrayToShow[i].Born));
-        //itemClone.querySelector('.description').innerText = filteredArrayToShow[i].emperorDescription;
-        itemClone.querySelector('.emperor-page-images').src = filteredArrayToShow[i].emperorImages[2];
-        itemClone.querySelector('.emperor-page-images').alt = filteredArrayToShow[i].emperorImages[2];
-        itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(filteredArrayToShow[i].emperorUntil) - filteredArrayToShow[i].emperorFrom) + ' years'
-        // Define the dots position
-        beg = filteredArrayToShow[i].emperorFrom;
-        end = filteredArrayToShow[i].emperorUntil;
-        relativeBeg = Math.abs(((-27)-beg)/(476+27)*100)
-        relativeEnd = Math.abs(((-27)-end)/(476+27)*100)
-
-        // Position the dots that marks the emperor years
-        itemClone.querySelector(".beg-container").style.left = relativeBeg + '%';
-        itemClone.querySelector(".end-container").style.left = relativeEnd + '%';
-        // append the template item in the home card container //
-        container.appendChild(itemClone)   
+        document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', false);
     }
 }
 
-// Display only 10 emperors at a time.
-if (container.children.length > 10) {
-    for (let i = 10; i < container.children.length; i++) {
-        container.children[i].style.display = 'none';
+function closeSidebars() {
+    if (document.querySelector('.menu-wrap .toggler').checked) {
+        sidebarCategories.classList.toggle('sidebar-category', false);
+        buttonCategories.classList.toggle('button-activated', false);
+        sidebarFilters.classList.toggle('sidebar-filter', false);
+        buttonFilters.classList.toggle('button-activated', false);
+        document.querySelector('.sidebar-overlay').classList.toggle('sidebar-overlay-display', false);
     }
-} 
+}
 
-// Listen when scroll is near botton
-window.addEventListener('scroll', function() {
-    const docHTML = document.documentElement;
-    // Define the "scroll to near botton"
-    if ((docHTML.scrollTop+docHTML.clientHeight)/docHTML.offsetHeight >= 0.85) {
-        // If all Items are already displayed do nothing.
-        if (container.children.length == filteredArray.length) {
-        }   else {
-            // Otherwise fill the container with the remaining items.
-            fillData(filteredArray);
-        }
-    }
-});
-
-
-function infiniteScroll(filteredArray) {
-    // Number of actual items being displayed.
-    nItemsDisplayed = container.children.length;
-    if (container.children.length+nItemsPerPage >= filteredArray.length) {
-        filteredArrayToShow = filteredArray.slice(container.children.length,filteredArray.length);
-    }   else if (container.children.length == 0) {
-        filteredArrayToShow = filteredArray.slice(0,nItemsPerPage);
+// Only show button to top when scrolled.
+window.onscroll = function() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollButton.style.display = 'flex';
     }   else {
-        filteredArrayToShow = filteredArray.slice(container.children.length,container.children.length+nItemsPerPage);
+            scrollButton.style.display = 'none';
     }
-}
+};
+
+//Activate & deactivate Overlay//
+// function onOverlay() {
+//     document.getElementById('watch-out-overlay').style.display='block';
+// }
+
+// function offOverlay() {
+//     document.getElementById('watch-out-overlay').style.display='none';
+// }
 
 
-// Update URL query string.
-function updateURL(dinastyIndex) {
-    // Define empty array.
-    let filtersQueryString = [];
-    // Define the dinasty string query
-    if (dinastyIndex !== -1) {
-        filtersQueryString.push('dinasty' + '=' + dinastyIndex);
-    }
-    // loop through all numerical filters and define its query string if activated.
 
-    for (let i = 0; i < filtersIDArray.length; i++) {
-        // If i filter has a value assigned:
-        if (document.getElementById(filtersIDArray[i]).value !== '') {
-            // Define the query string syntax 'name=value'
-            numFilterString = filtersIDArray[i] + '=' + document.getElementById(filtersIDArray[i]).value
-            // Push it to an array
-            filtersQueryString.push(numFilterString);
-        }
-    }
-    // Loop through checkboxes cause of deaths.
-    for (let i = 0; i < checkboxesDeathCauses.length; i++) {
-        // Add it only if it is checked.
-        if (checkboxesDeathCauses[i].checked) {
-            // Define the query string syntax 'causeOfDeath=1' (1=true)
-            checkboxFilterString = 'causeOfDeath' + i + '=' + 1;
-            // Push it to the array.
-            filtersQueryString.push(checkboxFilterString);
-        } 
-    }
-    // Define Query String to add in URL
-    queryStringToAdd = '?';
-    // Concatenate all the query strings defined in filtersQueryString array:
-    for (let i = 0; i < filtersQueryString.length; i++) {
-        queryStringToAdd = queryStringToAdd.concat(filtersQueryString[i]);
-        if (i < filtersQueryString.length-1) {
-           queryStringToAdd = queryStringToAdd.concat('&');
-        }
-    }
-    // Update URL
-    window.history.replaceState('null','',queryStringToAdd)
-}
+
+
+
