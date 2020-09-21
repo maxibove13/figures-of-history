@@ -312,7 +312,7 @@ function fillData(filteredArray) {
         itemClone.querySelector('.emperor-range').innerText = filteredArrayToShow[i].emperorFrom + '-' + filteredArrayToShow[i].emperorUntil;
         itemClone.querySelector('.main-image').style.backgroundImage = 'url(' + filteredArrayToShow[i].emperorImages[1] + ')';     
         itemClone.querySelector('.emperor-page-images').src = filteredArrayToShow[i].emperorImages[2];
-        itemClone.querySelector('.emperor-page-images').alt = filteredArrayToShow[i].emperorImages[2];
+        itemClone.querySelector('.emperor-page-images-2').src = filteredArrayToShow[i].emperorImages[0];
         itemClone.querySelector('.emperor-length').innerText = 'Emperor for: ' + (Math.abs(filteredArrayToShow[i].emperorUntil) - filteredArrayToShow[i].emperorFrom) + ' years'
         // Define the timeline position
         beg = filteredArrayToShow[i].emperorFrom;

@@ -213,13 +213,13 @@ main {
     }
    .figures {
        width: 100%;
-   }
-   .left-column-emperor {
-       width: 100%;
-   }
-   .main-image button {
-       display: block;
-   }
+    }
+    .left-column-emperor {
+        width: 100%;
+    }
+    .main-image button {
+        display: block;
+    }
 }
 
 
